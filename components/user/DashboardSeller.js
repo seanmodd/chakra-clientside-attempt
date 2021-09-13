@@ -1,16 +1,16 @@
-import {useState, useEffect} from 'react';
-import DashboardNav from '../components/DashboardNav';
-import ConnectNav from '../components/ConnectNav';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {HomeOutlined} from '@ant-design/icons';
-import {createConnectAccount} from '../actions/stripe';
-import {sellerHotels, deleteHotel} from '../actions/hotel';
-import {toast} from 'react-toastify';
-import SmallCard from '../components/cards/SmallCard';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { HomeOutlined } from '@ant-design/icons';
+import { toast } from 'react-toastify';
+import DashboardNav from '../DashboardNav';
+import ConnectNav from '../ConnectNav';
+import { createConnectAccount } from '../../actions/stripe';
+import { sellerHotels, deleteHotel } from '../../actions/hotel';
+import SmallCard from '../cards/SmallCard';
 
 const DashboardSeller = () => {
-  const {auth} = useSelector((state) => ({...state}));
+  const { auth } = useSelector((state) => ({ ...state }));
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const DashboardSeller = () => {
   }, []);
 
   const loadSellersHotels = async () => {
-    const {data} = await sellerHotels(auth.token);
+    const { data } = await sellerHotels(auth.token);
     setHotels(data);
   };
 
@@ -63,7 +63,7 @@ const DashboardSeller = () => {
             key={h._id}
             h={h}
             showViewMoreButton={false}
-            owner={true}
+            owner
             handleHotelDelete={handleHotelDelete}
           />
         ))}
@@ -114,9 +114,9 @@ const DashboardSeller = () => {
       {auth &&
       auth.user &&
       auth.user.stripe_seller &&
-      auth.user.stripe_seller.charges_enabled ?
-        connected() :
-        notConnected()}
+      auth.user.stripe_seller.charges_enabled
+        ? connected()
+        : notConnected()}
 
       {/* <pre>{JSON.stringify(auth, null, 4)}</pre> */}
     </>
