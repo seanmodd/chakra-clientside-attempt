@@ -5,7 +5,7 @@ let userState;
 if (typeof window !== 'undefined') {
   userState = JSON.parse(window.localStorage.getItem('auth'));
 } else {
-  userState = null; // {}
+  userState = {}; // {}
 }
 
 export const authReducer = (state = userState, action) => {

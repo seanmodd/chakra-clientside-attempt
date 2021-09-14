@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 // import { useStore } from "react-redux";
 import moment from 'moment';
 import { useSelector } from 'react-redux';
@@ -8,12 +9,16 @@ import { read, diffDays, isAlreadyBooked } from '../../redux/actions/hotel';
 
 const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
 const ViewHotel = ({ match, history }) => {
+  const router = useRouter();
   const [hotel, setHotel] = useState({});
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [alreadyBooked, setAlreadyBooked] = useState(false);
 
-  const { auth } = useSelector((state) => ({ ...state }));
+  const {
+    query: { hotelId },
+  } = router;
+  const { auth } = useSelector((state) => state);
 
   useEffect(() => {
     loadSellerHotel();
@@ -21,15 +26,15 @@ const ViewHotel = ({ match, history }) => {
 
   useEffect(() => {
     if (auth && auth.token) {
-      isAlreadyBooked(auth.token, match.params.hotelId).then((res) => {
+      isAlreadyBooked(auth.token, hotelId).then((res) => {
         // console.log(res);
         if (res.data.ok) setAlreadyBooked(true);
       });
     }
-  }, [auth, match.params.hotelId]);
+  }, [auth, hotelId]);
 
   const loadSellerHotel = async () => {
-    const res = await read(match.params.hotelId);
+    const res = await read(hotelId);
     // console.log(res);
     setHotel(res.data);
     setImage(`${BASE_URLes.data._id}`);
@@ -45,8 +50,8 @@ const ViewHotel = ({ match, history }) => {
 
     setLoading(true);
     if (!auth) history.push('/login');
-    // console.log(auth.token, match.params.hotelId);
-    const res = await getSessionId(auth.token, match.params.hotelId);
+    // console.log(auth.token, hotelId);
+    const res = await getSessionId(auth.token, hotelId);
     // console.log("get sessionid resposne", res.data.sessionId);
     const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
     stripe
