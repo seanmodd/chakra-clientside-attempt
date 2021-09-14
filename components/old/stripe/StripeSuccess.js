@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { LoadingOutlined } from '@ant-design/icons';
-import { stripeSuccessRequest } from '../../redux/actions/stripe';
+import { stripeSuccessRequest } from '../../../redux/actions/stripe';
 
 const StripeCancel = ({ match, history }) => {
   const {

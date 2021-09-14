@@ -1,9 +1,10 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import queryString from 'query-string';
 // import { Link } from "react-router-dom";
-import Search from '../components/forms/Search';
-import {searchListings} from '../actions/hotel';
-import SmallCard from '../components/cards/SmallCard';
+
+import Search from '../../forms/Search';
+import { searchListings } from '../../../redux/actions/hotel';
+import SmallCard from '../../cards/SmallCard';
 
 const SearchResult = () => {
   // state
@@ -13,9 +14,9 @@ const SearchResult = () => {
   const [hotels, setHotels] = useState([]);
   // when component mounts, get search params from url and use to send search query to backend
   useEffect(() => {
-    const {location, date, bed} = queryString.parse(window.location.search);
-    console.table({location, date, bed});
-    searchListings({location, date, bed}).then((res) => {
+    const { location, date, bed } = queryString.parse(window.location.search);
+    console.table({ location, date, bed });
+    searchListings({ location, date, bed }).then((res) => {
       console.log('SEARCH RESULTS ===>', res.data);
       setHotels(res.data);
     });

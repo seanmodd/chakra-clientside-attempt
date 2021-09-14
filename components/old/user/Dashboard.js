@@ -2,10 +2,10 @@
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import DashboardNav from '../DashboardNav';
-import ConnectNav from '../ConnectNav';
-import { userHotelBookings } from '../../redux/actions/hotel';
-import BookingCard from '../cards/BookingCard';
+import DashboardNav from '../../DashboardNav';
+import ConnectNav from '../../ConnectNav';
+import { userHotelBookings } from '../../../redux/actions/hotel';
+import BookingCard from '../../cards/BookingCard';
 
 const Dashboard = () => {
   const {

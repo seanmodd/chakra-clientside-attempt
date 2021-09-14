@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { HomeOutlined } from '@ant-design/icons';
 import { toast } from 'react-toastify';
-import DashboardNav from '../DashboardNav';
-import ConnectNav from '../ConnectNav';
+import DashboardNav from '../../DashboardNav';
+import ConnectNav from '../../ConnectNav';
 // import {Link} from 'react-router-dom';
-import { createConnectAccount } from '../../redux/actions/stripe';
-import { sellerHotels, deleteHotel } from '../../redux/actions/hotel';
-import SmallCard from '../cards/SmallCard';
+import { createConnectAccount } from '../../../redux/actions/stripe';
+import { sellerHotels, deleteHotel } from '../../../redux/actions/hotel';
+import SmallCard from '../../cards/SmallCard';
 
 const DashboardSeller = () => {
   const { auth } = useSelector((state) => ({ ...state }));

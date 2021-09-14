@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAccountStatus } from '../../redux/actions/stripe';
-import { updateUserInLocalStorage } from '../../redux/actions/auth';
+import { getAccountStatus } from '../../../redux/actions/stripe';
+import { updateUserInLocalStorage } from '../../../redux/actions/auth';
 
 const StripeCallback = ({ history }) => {
   const { auth } = useSelector((state) => ({ ...state }));

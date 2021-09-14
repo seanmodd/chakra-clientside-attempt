@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 // import { Select } from "antd";
 import { useSelector } from 'react-redux';
-import { read, updateHotel } from '../../redux/actions/hotel';
-import HotelEditForm from '../forms/HotelEditForm';
+import { read, updateHotel } from '../../../redux/actions/hotel';
+import HotelEditForm from '../../forms/HotelEditForm';
 
 // const { Option } = Select;
 
