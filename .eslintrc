@@ -1,24 +1,24 @@
 
+{
+  "extends": [
+    "wesbos"
+  ]
+}
+
+//! THE ORIGINAL
 // {
 //   "extends": [
-//     "wesbos"
-//   ]
+//     "prettier"
+//   ],
+//   "plugins": [
+//     "prettier"
+//   ],
+//   "rules": {
+//     // "prettier/prettier": "error",
+//     "react/jsx-key": "off",
+//     "prettier/prettier": "off",
+//     "react/no-unescaped-entities": "off",
+//     "import/no-anonymous-default-export": "off",
+//     "@next/next/link-passhref": "off"
+//   }
 // }
-
-// //! THE ORIGINAL
-// // {
-// //   "extends": [
-// //     "prettier"
-// //   ],
-// //   "plugins": [
-// //     "prettier"
-// //   ],
-// //   "rules": {
-// //     // "prettier/prettier": "error",
-// //     "react/jsx-key": "off",
-// //     "prettier/prettier": "off",
-// //     "react/no-unescaped-entities": "off",
-// //     "import/no-anonymous-default-export": "off",
-// //     "@next/next/link-passhref": "off"
-// //   }
-// // }
