@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { login } from '../../redux/actions/auth';
 import LoginForm from '../../components/LoginForm';
 
-const Login = ({ history }) => {
+const Login = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('ryan@gmail.com');
   const [password, setPassword] = useState('rrrrrr');
 
@@ -22,13 +24,14 @@ const Login = ({ history }) => {
         );
         // console.log(res.data);
         // save user and token to local storage
-        window.localStorage.setItem('auth', JSON.stringify(res.data));
+        typeof window !== 'undefined' &&
+          window.localStorage.setItem('auth', JSON.stringify(res.data));
         // save user and token to redux
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: res.data,
         });
-        history.push('/dashboard');
+        router.push('/dashboard');
       }
     } catch (err) {
       console.log(err);

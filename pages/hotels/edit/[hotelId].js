@@ -2,14 +2,19 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 // import { Select } from "antd";
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { read, updateHotel } from '../../../redux/actions/hotel';
 import HotelEditForm from '../../../components/forms/HotelEditForm';
-
+// ! useRouter from Nextjs
 // const { Option } = Select;
 
 const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
 
-const EditHotel = ({ match }) => {
+const EditHotel = () => {
+  const router = useRouter();
+  const {
+    query: { hotelId },
+  } = router;
   // redux
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
@@ -30,12 +35,15 @@ const EditHotel = ({ match }) => {
   // destructuring variables from state
   const { title, content, price, from, to, bed, location } = values;
 
+  // useEffect(() => {
+  //   loadSellerHotel();
+  // }, [loadSellerHotel]);
   useEffect(() => {
     loadSellerHotel();
-  }, [loadSellerHotel]);
+  }, []);
 
   const loadSellerHotel = async () => {
-    const res = await read(match.params.hotelId);
+    const res = await read(hotelId);
     // console.log(res);
     setValues({ ...values, ...res.data });
     setPreview(`${BASE_URL}/hotel/image/${res.data._id}`);
@@ -55,7 +63,7 @@ const EditHotel = ({ match }) => {
     hotelData.append('bed', bed);
 
     try {
-      const res = await updateHotel(token, hotelData, match.params.hotelId);
+      const res = await updateHotel(token, hotelData, hotelId);
       console.log('HOTEL UPDATE RES', res);
       toast.success(`${res.data.title} is updated`);
     } catch (err) {

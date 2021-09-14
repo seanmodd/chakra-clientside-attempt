@@ -50,7 +50,7 @@ const NewHotel = () => {
       console.log('HOTEL CREATE RES', res);
       toast.success('New hotel is posted');
       setTimeout(() => {
-        window.location.reload();
+        typeof window !== 'undefined' && window.location.reload();
       }, 1000);
     } catch (err) {
       console.log(err);

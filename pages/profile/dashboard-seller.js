@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { HomeOutlined } from '@ant-design/icons';
@@ -11,9 +12,10 @@ import { sellerHotels, deleteHotel } from '../../redux/actions/hotel';
 import SmallCard from '../../components/cards/SmallCard';
 
 const DashboardSeller = () => {
-  const { auth } = useSelector((state) => ({ ...state }));
+  const { auth } = useSelector((state) => state);
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     loadSellersHotels();
@@ -29,7 +31,9 @@ const DashboardSeller = () => {
     try {
       const res = await createConnectAccount(auth.token);
       console.log(res); // get login link
-      window.location.href = res.data;
+      // ! Potentially change to res.data.url...
+      // router.push(res.data.url)
+      router.push(res.data);
     } catch (err) {
       console.log(err);
       toast.error('Stripe connect failed, Try again.');
@@ -38,7 +42,8 @@ const DashboardSeller = () => {
   };
 
   const handleHotelDelete = async (hotelId) => {
-    if (!window.confirm('Are you sure?')) return;
+    if (typeof window !== 'undefined' && !window?.confirm('Are you sure?'))
+      return;
     deleteHotel(auth.token, hotelId).then((res) => {
       toast.success('Hotel Deleted');
       loadSellersHotels();

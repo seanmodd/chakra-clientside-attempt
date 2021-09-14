@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
 import { stripeSuccessRequest } from '../../../redux/actions/stripe';
+// ! useRouter from Nextjs
 
-const StripeCancel = ({ match, history }) => {
+const StripeCancel = () => {
+  const router = useRouter();
+  const { query: hotelId } = router;
   const {
     auth: { token },
   } = useSelector((state) => ({ ...state }));
@@ -12,17 +16,17 @@ const StripeCancel = ({ match, history }) => {
   useEffect(() => {
     // console.log(
     //   "send this hotelid to backend to crate order",
-    //   match.params.hotelId
+    //   hotelId
     // );
-    stripeSuccessRequest(token, match.params.hotelId).then((res) => {
+    stripeSuccessRequest(token, hotelId).then((res) => {
       if (res.data.success) {
         // console.log("stripe success response", res.data);
-        history.push('/dashboard');
+        router.push('/dashboard');
       } else {
-        history.push('/stripe/cancel');
+        router.push('/stripe/cancel');
       }
     });
-  }, [history, token, match.params.hotelId]);
+  }, [router, token, hotelId]);
 
   return (
     <div className="container">

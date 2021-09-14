@@ -10,7 +10,7 @@ import BookingCard from '../../components/cards/BookingCard';
 const Dashboard = () => {
   const {
     auth: { token },
-  } = useSelector((state) => ({ ...state }));
+  } = useSelector((state) => state);
   const [booking, setBooking] = useState([]);
 
   useEffect(() => {

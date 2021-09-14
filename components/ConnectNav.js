@@ -1,37 +1,40 @@
-import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {Card, Avatar, Badge} from 'antd';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { Card, Avatar, Badge } from 'antd';
 import moment from 'moment';
+import { SettingOutlined } from '@ant-design/icons';
+import { toast } from 'react-toastify';
 import {
   getAccountBalance,
   currencyFormatter,
   payoutSetting,
 } from '../redux/actions/stripe';
-import {SettingOutlined} from '@ant-design/icons';
-import {toast} from 'react-toastify';
 
-const {Meta} = Card;
-const {Ribbon} = Badge;
+const { Meta } = Card;
+const { Ribbon } = Badge;
 
 const ConnectNav = () => {
+  const router = useRouter();
   const [setLoading] = useState(false);
   const [balance, setBalance] = useState(0);
-  const {auth} = useSelector((state) => ({...state}));
-  const {user, token} = auth;
+  const { auth } = useSelector((state) => state);
+  const { user, token } = auth;
 
   useEffect(() => {
-    getAccountBalance(auth.token).then((res) => {
+    getAccountBalance(token).then((res) => {
       // console.log(res);
       setBalance(res.data);
     });
-  }, [auth.token]);
+  }, [token]);
 
   const handlePayoutSettings = async () => {
     setLoading(true);
     try {
       const res = await payoutSetting(token);
       // console.log("RES FOR PAYOUT SETTING LINK", res);
-      window.location.href = res.data.url;
+      const url = res?.data?.url;
+      url && router.push(url);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -53,25 +56,25 @@ const ConnectNav = () => {
         auth.user &&
         auth.user.stripe_seller &&
         auth.user.stripe_seller.charges_enabled && (
-        <>
-          <Ribbon text="Avaliable" color="grey">
-            <Card className="bg-light pt-1">
-              {balance &&
+          <>
+            <Ribbon text="Avaliable" color="grey">
+              <Card className="bg-light pt-1">
+                {balance &&
                   balance.pending &&
                   balance.pending.map((bp, i) => (
                     <span key={i} className="lead">
                       {currencyFormatter(bp)}
                     </span>
                   ))}
-            </Card>
-          </Ribbon>
-          <Ribbon text="Payouts" color="silver">
-            <Card onClick={handlePayoutSettings} className="bg-light pointer">
-              <SettingOutlined className="h5 pt-2" />
-            </Card>
-          </Ribbon>
-        </>
-      )}
+              </Card>
+            </Ribbon>
+            <Ribbon text="Payouts" color="silver">
+              <Card onClick={handlePayoutSettings} className="bg-light pointer">
+                <SettingOutlined className="h5 pt-2" />
+              </Card>
+            </Ribbon>
+          </>
+        )}
     </div>
   );
 };

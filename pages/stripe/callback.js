@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { getAccountStatus } from '../../redux/actions/stripe';
 import { updateUserInLocalStorage } from '../../redux/actions/auth';
-
-const StripeCallback = ({ history }) => {
-  const { auth } = useSelector((state) => ({ ...state }));
+// ! useRouter from Nextjs
+const StripeCallback = () => {
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const router = useRouter();
+  // useEffect(() => {
+  //   if (auth && auth.token) accountStatus();
+  // }, [auth, accountStatus]);
 
   useEffect(() => {
     if (auth && auth.token) accountStatus();
-  }, [auth, accountStatus]);
+  }, [auth]);
 
   const accountStatus = async () => {
     try {
@@ -24,7 +29,7 @@ const StripeCallback = ({ history }) => {
           payload: res.data,
         });
         // redirect user to dashboard
-        window.location.href = '/dashboard/seller';
+        router.push('/dashboard/seller');
       });
     } catch (err) {
       console.log(err);

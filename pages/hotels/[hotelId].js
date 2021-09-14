@@ -8,7 +8,7 @@ import { getSessionId } from '../../redux/actions/stripe';
 import { read, diffDays, isAlreadyBooked } from '../../redux/actions/hotel';
 
 const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
-const ViewHotel = ({ match, history }) => {
+const ViewHotel = () => {
   const router = useRouter();
   const [hotel, setHotel] = useState({});
   const [image, setImage] = useState('');
@@ -44,12 +44,12 @@ const ViewHotel = ({ match, history }) => {
     e.preventDefault();
 
     if (!auth || !auth.token) {
-      history.push('/login');
+      router.push('/login');
       return;
     }
 
     setLoading(true);
-    if (!auth) history.push('/login');
+    if (!auth) router.push('/login');
     // console.log(auth.token, hotelId);
     const res = await getSessionId(auth.token, hotelId);
     // console.log("get sessionid resposne", res.data.sessionId);

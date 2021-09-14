@@ -1,8 +1,7 @@
-
-import Link from 'next/link'
+import Link from 'next/link';
 
 const DashboardNav = () => {
-  const active = window.location.pathname;
+  const active = typeof window !== 'undefined' ? window.location.pathname : '';
   //   console.log(active);
   return (
     <ul className="nav nav-tabs">

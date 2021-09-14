@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import RegisterForm from '../../components/RegisterForm';
 import { register } from '../../redux/actions/auth';
 
-const Register = ({ history }) => {
+const Register = () => {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +20,7 @@ const Register = ({ history }) => {
       });
       console.log('REGISTER USER ===> ', res);
       toast.success('Register success. Please login.');
-      history.push('/login');
+      router.push('/login');
     } catch (err) {
       console.log(err);
       if (err.response.status === 400) toast.error(err.response.data);
