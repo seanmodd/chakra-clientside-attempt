@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewHotel from '../../hotels/ViewHotel';
+import ViewHotel from '../../components/hotels/ViewHotel';
 
 function App() {
   return (
