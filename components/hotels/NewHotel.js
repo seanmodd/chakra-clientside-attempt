@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 // import { DatePicker, Select } from "antd";
 import { useSelector } from 'react-redux';
-import { createHotel } from '../../actions/hotel';
+import { createHotel } from '../../redux/actions/hotel';
+
 import HotelCreateForm from '../forms/HotelCreateForm';
 
 // const { Option } = Select;

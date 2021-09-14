@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { login } from '../../actions/auth';
-import LoginForm from '../../components/LoginForm';
+import { login } from '../../../redux/actions/auth';
+import LoginForm from '../../LoginForm';
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState('ryan@gmail.com');

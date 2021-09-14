@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {stripeSuccessRequest} from '../actions/stripe';
-import {LoadingOutlined} from '@ant-design/icons';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { LoadingOutlined } from '@ant-design/icons';
+import { stripeSuccessRequest } from '../../redux/actions/stripe';
 
-const StripeCancel = ({match, history}) => {
+const StripeCancel = ({ match, history }) => {
   const {
-    auth: {token},
-  } = useSelector((state) => ({...state}));
+    auth: { token },
+  } = useSelector((state) => ({ ...state }));
   // const { token } = auth;
 
   useEffect(() => {

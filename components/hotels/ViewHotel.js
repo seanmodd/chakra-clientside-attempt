@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
-import { getSessionId } from '../actions/stripe';
-import { read, diffDays, isAlreadyBooked } from '../actions/hotel';
+import { getSessionId } from '../../redux/actions/stripe';
+import { read, diffDays, isAlreadyBooked } from '../../redux/actions/hotel';
 
 const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
 

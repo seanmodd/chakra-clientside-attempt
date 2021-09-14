@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../../Components/booking/auth/Login';
+import Login from '../../components/booking/auth/Login';
 
 function App() {
   return (

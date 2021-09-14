@@ -1,9 +1,9 @@
-import {useState} from 'react';
-import RegisterForm from '../../components/RegisterForm';
-import {toast} from 'react-toastify';
-import {register} from '../../actions/auth';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import RegisterForm from '../../RegisterForm';
+import { register } from '../../../redux/actions/auth';
 
-const Register = ({history}) => {
+const Register = ({ history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -1,5 +1,5 @@
 import React from 'react';
-import StripeSuccess from '../../../stripe/StripeSuccess';
+import StripeSuccess from '../../../components/stripe/StripeSuccess';
 
 function App() {
   return (

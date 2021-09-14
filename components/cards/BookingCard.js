@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { currencyFormatter } from '../../actions/stripe';
-import { diffDays } from '../../actions/hotel';
+// import { useHistory } from 'react-router-dom';
+import { currencyFormatter } from '../../redux/actions/stripe';
+import { diffDays } from '../../redux/actions/hotel';
 
 import OrderModal from '../modals/OrderModal';
 
