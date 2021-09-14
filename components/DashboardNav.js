@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom';
+
+import Link from 'next/link'
 
 const DashboardNav = () => {
   const active = window.location.pathname;
@@ -8,7 +9,7 @@ const DashboardNav = () => {
       <li className="nav-item">
         <Link
           className={`nav-link ${active === '/dashboard' && 'active'}`}
-          to="/dashboard"
+          href="/dashboard"
         >
           Your Bookings
         </Link>
@@ -16,7 +17,7 @@ const DashboardNav = () => {
       <li className="nav-item">
         <Link
           className={`nav-link ${active === '/dashboard/seller' && 'active'}`}
-          to="/dashboard/seller"
+          href="/dashboard/seller"
         >
           Your Hotels
         </Link>

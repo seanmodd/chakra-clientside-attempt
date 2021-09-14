@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import DashboardNav from '../DashboardNav';
@@ -38,7 +39,7 @@ const Dashboard = () => {
             <h2>Your Bookings</h2>
           </div>
           <div className="col-md-2">
-            <Link to="/" className="btn btn-primary">
+            <Link href="/" className="btn btn-primary">
               Browse Hotels
             </Link>
           </div>

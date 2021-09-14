@@ -1,11 +1,12 @@
-import {Link} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+// import {useHistory} from 'react-router-dom';
+import Link from 'next/link';
 
 const TopNav = () => {
   const dispatch = useDispatch();
-  const {auth} = useSelector((state) => ({...state}));
-  const history = useHistory();
+  const { auth } = useSelector((state) => ({ ...state }));
+  // const history = useHistory();
 
   const logout = () => {
     dispatch({
@@ -13,17 +14,17 @@ const TopNav = () => {
       payload: null,
     });
     window.localStorage.removeItem('auth');
-    history.push('/login');
+    // history.push('/login');
   };
 
   return (
     <div className="nav bg-light d-flex justify-content-between">
-      <Link className="nav-link" to="/">
+      <Link className="nav-link" href="/">
         Home
       </Link>
 
       {auth !== null && (
-        <Link className="nav-link" to="/dashboard">
+        <Link className="nav-link" href="/dashboard">
           Dashboard
         </Link>
       )}
@@ -36,10 +37,10 @@ const TopNav = () => {
 
       {auth === null && (
         <>
-          <Link className="nav-link" to="/login">
+          <Link className="nav-link" href="/login">
             Login
           </Link>
-          <Link className="nav-link" to="/register">
+          <Link className="nav-link" href="/register">
             Register
           </Link>
         </>

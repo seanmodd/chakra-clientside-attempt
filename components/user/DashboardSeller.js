@@ -1,16 +1,17 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { HomeOutlined } from '@ant-design/icons';
+import { toast } from 'react-toastify';
 import DashboardNav from '../DashboardNav';
 import ConnectNav from '../ConnectNav';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {HomeOutlined} from '@ant-design/icons';
-import {createConnectAccount} from '../../redux/actions/stripe';
-import {sellerHotels, deleteHotel} from '../../redux/actions/hotel';
-import {toast} from 'react-toastify';
+// import {Link} from 'react-router-dom';
+import { createConnectAccount } from '../../redux/actions/stripe';
+import { sellerHotels, deleteHotel } from '../../redux/actions/hotel';
 import SmallCard from '../cards/SmallCard';
 
 const DashboardSeller = () => {
-  const {auth} = useSelector((state) => ({...state}));
+  const { auth } = useSelector((state) => ({ ...state }));
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +20,7 @@ const DashboardSeller = () => {
   }, []);
 
   const loadSellersHotels = async () => {
-    const {data} = await sellerHotels(auth.token);
+    const { data } = await sellerHotels(auth.token);
     setHotels(data);
   };
 
@@ -51,7 +52,7 @@ const DashboardSeller = () => {
           <h2>Your Hotels</h2>
         </div>
         <div className="col-md-2">
-          <Link to="/hotels/new" className="btn btn-primary">
+          <Link href="/hotels/new" className="btn btn-primary">
             + Add New
           </Link>
         </div>
@@ -63,7 +64,7 @@ const DashboardSeller = () => {
             key={h._id}
             h={h}
             showViewMoreButton={false}
-            owner={true}
+            owner
             handleHotelDelete={handleHotelDelete}
           />
         ))}
@@ -114,9 +115,9 @@ const DashboardSeller = () => {
       {auth &&
       auth.user &&
       auth.user.stripe_seller &&
-      auth.user.stripe_seller.charges_enabled ?
-        connected() :
-        notConnected()}
+      auth.user.stripe_seller.charges_enabled
+        ? connected()
+        : notConnected()}
 
       {/* <pre>{JSON.stringify(auth, null, 4)}</pre> */}
     </>
