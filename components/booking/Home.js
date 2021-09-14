@@ -1,10 +1,12 @@
-import {useState, useEffect} from 'react';
-import {allHotels} from '../actions/hotel';
-import SmallCard from '../components/cards/SmallCard';
-import Search from '../components/forms/Search';
+import { useState, useEffect } from 'react';
+import { allHotels } from '../../redux/actions/hotel';
+import SmallCard from '../cards/SmallCard';
+import Search from '../forms/Search';
 
-const Home = () => {
+const Home = (props) => {
   const [hotels, setHotels] = useState([]);
+
+  console.log('Home Props', props);
 
   useEffect(() => {
     loadAllhotels();
@@ -34,5 +36,17 @@ const Home = () => {
     </>
   );
 };
+
+// export async function getServerSideProps(ctx) {
+//   const res = await allHotels();
+//   const data = await res.json();
+//   console.log('SererSide Props', data);
+
+//   return {
+//     props: {
+//       data: res,
+//     },
+//   };
+// }
 
 export default Home;

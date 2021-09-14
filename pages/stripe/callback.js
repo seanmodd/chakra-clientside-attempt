@@ -1,10 +1,10 @@
 import React from 'react';
-import StripeSuccess from '../../../stripe/StripeSuccess';
+import StripeCallback from '../../stripe/StripeCallback';
 
 function App() {
   return (
     <div>
-      <StripeSuccess />
+      <StripeCallback />
     </div>
   );
 }

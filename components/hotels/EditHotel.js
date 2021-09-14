@@ -1,16 +1,18 @@
-import {useState, useEffect} from 'react';
-import {toast} from 'react-toastify';
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 // import { Select } from "antd";
-import {read, updateHotel} from '../actions/hotel';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { read, updateHotel } from '../actions/hotel';
 import HotelEditForm from '../components/forms/HotelEditForm';
 
 // const { Option } = Select;
 
-const EditHotel = ({match}) => {
+const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
+
+const EditHotel = ({ match }) => {
   // redux
-  const {auth} = useSelector((state) => ({...state}));
-  const {token} = auth;
+  const { auth } = useSelector((state) => ({ ...state }));
+  const { token } = auth;
   // state
   const [values, setValues] = useState({
     title: '',
@@ -23,10 +25,10 @@ const EditHotel = ({match}) => {
   });
   const [image, setImage] = useState('');
   const [preview, setPreview] = useState(
-      'https://via.placeholder.com/100x100.png?text=PREVIEW',
+    'https://via.placeholder.com/100x100.png?text=PREVIEW'
   );
   // destructuring variables from state
-  const {title, content, price, from, to, bed, location} = values;
+  const { title, content, price, from, to, bed, location } = values;
 
   useEffect(() => {
     loadSellerHotel();
@@ -35,8 +37,8 @@ const EditHotel = ({match}) => {
   const loadSellerHotel = async () => {
     const res = await read(match.params.hotelId);
     // console.log(res);
-    setValues({...values, ...res.data});
-    setPreview(`${process.env.REACT_APP_API}/hotel/image/${res.data._id}`);
+    setValues({ ...values, ...res.data });
+    setPreview(`${BASE_URL}/hotel/image/${res.data._id}`);
   };
 
   const handleSubmit = async (e) => {
@@ -69,7 +71,7 @@ const EditHotel = ({match}) => {
   };
 
   const handleChange = (e) => {
-    setValues({...values, [e.target.name]: e.target.value});
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   return (

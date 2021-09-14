@@ -1,11 +1,13 @@
-import {useState} from 'react';
-import {currencyFormatter} from '../../actions/stripe';
-import {diffDays} from '../../actions/hotel';
-import {useHistory} from 'react-router-dom';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { currencyFormatter } from '../../actions/stripe';
+import { diffDays } from '../../actions/hotel';
 
 import OrderModal from '../modals/OrderModal';
 
-const BookingCard = ({hotel, session, orderedBy}) => {
+const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
+
+const BookingCard = ({ hotel, session, orderedBy }) => {
   const [showModal, setShowModal] = useState(false);
 
   // const history = useHistory();
@@ -16,7 +18,7 @@ const BookingCard = ({hotel, session, orderedBy}) => {
           <div className="col-md-4">
             {hotel.image && hotel.image.contentType ? (
               <img
-                src={`${process.env.REACT_APP_API}/hotel/image/${hotel._id}`}
+                src={`${BASE_URL}/hotel/image/${hotel._id}`}
                 alt="default hotel view"
                 className="card-image img img-fluid"
               />
@@ -41,8 +43,8 @@ const BookingCard = ({hotel, session, orderedBy}) => {
               </h3>
               <p className="alert alert-info">{hotel.location}</p>
               <p className="card-text">{`${hotel.content.substring(
-                  1,
-                  200,
+                1,
+                200
               )}...`}</p>
               <p className="card-text">
                 <span className="float-right text-primary">

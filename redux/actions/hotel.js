@@ -1,14 +1,19 @@
-import axios from "axios";
+import axios from 'axios';
+
+const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
+
+console.log('REACT_APP_API', BASE_URL);
 
 export const createHotel = async (token, data) =>
-  await axios.post(`${process.env.REACT_APP_API}/create-hotel`, data, {
+  await axios.post(`${BASE_URL}/create-hotel`, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
 export const allHotels = async () =>
-  await axios.get(`${process.env.REACT_APP_API}/hotels`);
+  // await axios.get(`${BASE_URL}/hotels`);
+  await axios.get(`${BASE_URL}/hotels`);
 
 export const diffDays = (from, to) => {
   const day = 24 * 60 * 60 * 1000;
@@ -19,46 +24,42 @@ export const diffDays = (from, to) => {
 };
 
 export const sellerHotels = async (token) =>
-  await axios.get(`${process.env.REACT_APP_API}/seller-hotels`, {
+  await axios.get(`${BASE_URL}/seller-hotels`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
 export const deleteHotel = async (token, hotelId) =>
-  await axios.delete(`${process.env.REACT_APP_API}/delete-hotel/${hotelId}`, {
+  await axios.delete(`${BASE_URL}/delete-hotel/${hotelId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
 export const read = async (hotelId) =>
-  await axios.get(`${process.env.REACT_APP_API}/hotel/${hotelId}`);
+  await axios.get(`${BASE_URL}/hotel/${hotelId}`);
 
 export const updateHotel = async (token, data, hotelId) =>
-  await axios.put(
-    `${process.env.REACT_APP_API}/update-hotel/${hotelId}`,
-    data,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  await axios.put(`${BASE_URL}/update-hotel/${hotelId}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
 export const userHotelBookings = async (token) =>
-  await axios.get(`${process.env.REACT_APP_API}/user-hotel-bookings`, {
+  await axios.get(`${BASE_URL}/user-hotel-bookings`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
 export const isAlreadyBooked = async (token, hotelId) =>
-  await axios.get(`${process.env.REACT_APP_API}/is-already-booked/${hotelId}`, {
+  await axios.get(`${BASE_URL}/is-already-booked/${hotelId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
 export const searchListings = async (query) =>
-  await axios.post(`${process.env.REACT_APP_API}/search-listings`, query);
+  await axios.post(`${BASE_URL}/search-listings`, query);

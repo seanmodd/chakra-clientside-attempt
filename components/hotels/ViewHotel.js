@@ -1,18 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 // import { useStore } from "react-redux";
-import {read, diffDays, isAlreadyBooked} from '../actions/hotel';
-import {getSessionId} from '../actions/stripe';
 import moment from 'moment';
-import {useSelector} from 'react-redux';
-import {loadStripe} from '@stripe/stripe-js';
+import { useSelector } from 'react-redux';
+import { loadStripe } from '@stripe/stripe-js';
+import { getSessionId } from '../actions/stripe';
+import { read, diffDays, isAlreadyBooked } from '../actions/hotel';
 
-const ViewHotel = ({match, history}) => {
+const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
+
+const ViewHotel = ({ match, history }) => {
   const [hotel, setHotel] = useState({});
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [alreadyBooked, setAlreadyBooked] = useState(false);
 
-  const {auth} = useSelector((state) => ({...state}));
+  const { auth } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     loadSellerHotel();
@@ -31,7 +33,7 @@ const ViewHotel = ({match, history}) => {
     const res = await read(match.params.hotelId);
     // console.log(res);
     setHotel(res.data);
-    setImage(`${process.env.REACT_APP_API}/hotel/image/${res.data._id}`);
+    setImage(`${BASE_URLes.data._id}`);
   };
 
   const handleClick = async (e) => {
@@ -49,10 +51,10 @@ const ViewHotel = ({match, history}) => {
     // console.log("get sessionid resposne", res.data.sessionId);
     const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
     stripe
-        .redirectToCheckout({
-          sessionId: res.data.sessionId,
-        })
-        .then((result) => console.log(result));
+      .redirectToCheckout({
+        sessionId: res.data.sessionId,
+      })
+      .then((result) => console.log(result));
   };
 
   return (
@@ -92,13 +94,13 @@ const ViewHotel = ({match, history}) => {
               className="btn btn-block btn-lg btn-primary mt-3"
               disabled={loading || alreadyBooked}
             >
-              {loading ?
-                'Loading...' :
-                alreadyBooked ?
-                'Already Booked' :
-                auth && auth.token ?
-                'Book Now' :
-                'Login to Book'}
+              {loading
+                ? 'Loading...'
+                : alreadyBooked
+                ? 'Already Booked'
+                : auth && auth.token
+                ? 'Book Now'
+                : 'Login to Book'}
             </button>
           </div>
         </div>

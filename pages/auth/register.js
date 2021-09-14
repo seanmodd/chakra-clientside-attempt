@@ -1,5 +1,6 @@
 import React from 'react';
-import Register from '../../booking/auth/Register';
+
+import Register from '../../components/booking/auth/Register';
 
 function App() {
   return (
@@ -10,3 +11,4 @@ function App() {
 }
 
 export default App;
+ 

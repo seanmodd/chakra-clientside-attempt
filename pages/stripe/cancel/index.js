@@ -1,10 +1,10 @@
 import React from 'react';
-import StripeSuccess from '../../../stripe/StripeSuccess';
+import StripeCancel from '../../../stripe/StripeCancel';
 
 function App() {
   return (
     <div>
-      <StripeSuccess />
+      <StripeCancel />
     </div>
   );
 }

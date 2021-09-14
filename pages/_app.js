@@ -2,8 +2,7 @@ import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore } from 'redux';
-import { DarkModeSwitch } from '../components/DarkModeSwitch';
-import rootReducer from '../reducers';
+import rootReducer from '../redux/reducers';
 import theme from '../theme';
 
 function MyApp({ Component, pageProps }) {

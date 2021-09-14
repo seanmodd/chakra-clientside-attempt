@@ -6,7 +6,7 @@ import {
   getAccountBalance,
   currencyFormatter,
   payoutSetting,
-} from '../actions/stripe';
+} from '../redux/actions/stripe';
 import {SettingOutlined} from '@ant-design/icons';
 import {toast} from 'react-toastify';
 

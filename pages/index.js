@@ -1,10 +1,8 @@
 import { Heading } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { Container } from '../components/Container';
-import SmallCard from '../components/cards/SmallCard';
-import Search from '../components/forms/Search';
-import { allHotels } from '../actions/hotel';
-import Home from '../booking/Home';
+import { allHotels } from '../redux/actions/hotel';
+import Home from '../components/booking/Home';
 
 const Index = () => {
   const [hotels, setHotels] = useState([]);

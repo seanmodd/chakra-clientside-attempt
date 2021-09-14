@@ -2,9 +2,8 @@ import { combineReducers } from 'redux';
 import { authReducer } from './auth';
 
 const rootReducer = combineReducers({
-  // ! NEED TO SHOW RYAN
-  // auth: authReducer,
-  auth: undefined,
+  // ! WTF IS THE PROBLEM
+  auth: authReducer,
 });
 
 export default rootReducer;
