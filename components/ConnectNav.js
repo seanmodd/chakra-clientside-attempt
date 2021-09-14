@@ -19,7 +19,7 @@ const ConnectNav = () => {
   const [setLoading] = useState(false);
   const [balance, setBalance] = useState(0);
   const { auth } = useSelector((state) => state);
-  const { user, token } = auth;
+  const { user, token } = auth || {};
 
   useEffect(() => {
     getAccountBalance(token).then((res) => {
@@ -46,11 +46,11 @@ const ConnectNav = () => {
   return (
     <div className="d-flex justify-content-around">
       <Card>
-        <Meta
+        {/* <Meta
           avatar={<Avatar>{user.name[0]}</Avatar>}
           title={user.name}
           description={`Joined ${moment(user.createdAt).fromNow()}`}
-        />
+        /> */}
       </Card>
       {auth &&
         auth.user &&

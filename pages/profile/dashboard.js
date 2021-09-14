@@ -8,9 +8,9 @@ import { userHotelBookings } from '../../redux/actions/hotel';
 import BookingCard from '../../components/cards/BookingCard';
 
 const Dashboard = () => {
-  const {
-    auth: { token },
-  } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
+  // const { user, token } = auth || {};
+  const { token } = auth || {};
   const [booking, setBooking] = useState([]);
 
   useEffect(() => {
@@ -18,9 +18,11 @@ const Dashboard = () => {
   }, []);
 
   const loadUserBookings = async () => {
-    const res = await userHotelBookings(token);
-    console.log(res);
-    setBooking(res.data);
+    if (token) {
+      const res = await userHotelBookings(token);
+      console.log(res);
+      setBooking(res.data);
+    }
   };
 
   return (

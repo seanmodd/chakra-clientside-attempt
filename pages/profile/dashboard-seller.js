@@ -13,6 +13,8 @@ import SmallCard from '../../components/cards/SmallCard';
 
 const DashboardSeller = () => {
   const { auth } = useSelector((state) => state);
+  const { token } = auth || {};
+
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -22,8 +24,10 @@ const DashboardSeller = () => {
   }, []);
 
   const loadSellersHotels = async () => {
-    const { data } = await sellerHotels(auth.token);
-    setHotels(data);
+    if (token) {
+      const { data } = await sellerHotels(auth?.token);
+      setHotels(data);
+    }
   };
 
   const handleClick = async () => {
