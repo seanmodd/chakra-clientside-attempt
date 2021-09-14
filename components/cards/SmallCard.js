@@ -1,3 +1,4 @@
+// ! KEEP THIS COMPONENT!!!
 import Link from 'next/link';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { currencyFormatter } from '../../redux/actions/stripe';

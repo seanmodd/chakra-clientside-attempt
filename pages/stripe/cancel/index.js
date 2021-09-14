@@ -1,12 +1,13 @@
-import React from 'react';
-import StripeCancel from '../../../components/stripe/StripeCancel';
+import React from "react";
 
-function App() {
+const StripeCancel = () => {
   return (
-    <div>
-      <StripeCancel />
+    <div className="container">
+      <div className="col">
+        <h2 className="text-center p-5">Payment failed. Try again.</h2>
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default StripeCancel;
