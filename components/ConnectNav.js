@@ -22,10 +22,12 @@ const ConnectNav = () => {
   const { user, token } = auth || {};
 
   useEffect(() => {
-    getAccountBalance(token).then((res) => {
-      // console.log(res);
-      setBalance(res.data);
-    });
+    if (token) {
+      getAccountBalance(token).then((res) => {
+        // console.log(res);
+        setBalance(res.data);
+      });
+    }
   }, [token]);
 
   const handlePayoutSettings = async () => {
