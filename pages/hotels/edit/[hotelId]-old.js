@@ -1,5 +1,5 @@
 import React from 'react';
-import EditHotel from '../../../components/hotels/EditHotel';
+import EditHotel from '../../../components/old/hotels/EditHotel';
 
 function App() {
   return (

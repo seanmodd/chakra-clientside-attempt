@@ -1,5 +1,5 @@
 import React from 'react';
-import StripeCancel from '../../../components/stripe/StripeCancel';
+import StripeCancel from '../../../components/old/stripe/StripeCancel';
 
 function App() {
   return (

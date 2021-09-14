@@ -1,5 +1,5 @@
 import React from 'react';
-import NewHotel from '../../components/hotels/NewHotel';
+import NewHotel from '../../components/old/hotels/NewHotel';
 
 function App() {
   return (

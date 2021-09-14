@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardSeller from '../../components/user/DashboardSeller';
+import DashboardSeller from '../../components/old/user/DashboardSeller';
 
 function App() {
   return (

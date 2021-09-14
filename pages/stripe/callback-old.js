@@ -1,5 +1,5 @@
 import React from 'react';
-import StripeCallback from '../../components/stripe/StripeCallback';
+import StripeCallback from '../../components/old/stripe/StripeCallback';
 
 function App() {
   return (
