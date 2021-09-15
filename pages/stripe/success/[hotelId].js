@@ -21,7 +21,7 @@ const StripeCancel = () => {
     stripeSuccessRequest(token, hotelId).then((res) => {
       if (res.data.success) {
         // console.log("stripe success response", res.data);
-        router.push('/dashboard');
+        router.push('/profile/dashboard');
       } else {
         router.push('/stripe/cancel');
       }

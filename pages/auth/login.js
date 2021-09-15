@@ -31,7 +31,7 @@ const Login = () => {
           type: 'LOGGED_IN_USER',
           payload: res.data,
         });
-        router.push('/dashboard');
+        router.push('/profile/dashboard');
       }
     } catch (err) {
       console.log(err);

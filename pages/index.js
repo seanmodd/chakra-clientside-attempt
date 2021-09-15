@@ -1,11 +1,12 @@
-import { Heading } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import { Container } from '../components/Container';
 import { allHotels } from '../redux/actions/hotel';
-import Home from '../components/booking/Home';
+import SmallCard from '../components/cards/SmallCard';
+import Search from '../components/forms/Search';
 
-const Index = () => {
+const Home = (props) => {
   const [hotels, setHotels] = useState([]);
+
+  console.log('Home Props', props);
 
   useEffect(() => {
     loadAllhotels();
@@ -15,11 +16,37 @@ const Index = () => {
     const res = await allHotels();
     setHotels(res.data);
   };
+
   return (
-    <Container height="100vh">
-      <Home />
-    </Container>
+    <>
+      <div className="container-fluid bg-secondary p-5 text-center">
+        <h1>NEXT.JS: All Cars</h1>
+      </div>
+      <div className="col">
+        <br />
+        <Search />
+      </div>
+      <div className="container-fluid">
+        <br />
+        {/* <pre>{JSON.stringify(hotels, null, 4)}</pre> */}
+        {hotels.map((h) => (
+          <SmallCard key={h._id} h={h} />
+        ))}
+      </div>
+    </>
   );
 };
 
-export default Index;
+// export async function getServerSideProps(ctx) {
+//   const res = await allHotels();
+//   const data = await res.json();
+//   console.log('SererSide Props', data);
+
+//   return {
+//     props: {
+//       data: res,
+//     },
+//   };
+// }
+
+export default Home;

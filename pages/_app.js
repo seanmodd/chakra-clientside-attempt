@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore } from 'redux';
 import rootReducer from '../redux/reducers';
 import theme from '../theme';
+import TopNav from '../components/TopNav';
 
 function MyApp({ Component, pageProps }) {
   const store = createStore(rootReducer, composeWithDevTools());
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }) {
             useSystemColorMode: true,
           }}
         >
+          <TopNav />
           <Component {...pageProps} />
         </ColorModeProvider>
       </Provider>

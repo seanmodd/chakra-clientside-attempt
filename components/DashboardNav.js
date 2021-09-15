@@ -8,7 +8,7 @@ const DashboardNav = () => {
       <li className="nav-item">
         <Link
           className={`nav-link ${active === '/dashboard' && 'active'}`}
-          href="/dashboard"
+          href="/profile/dashboard"
         >
           Your Bookings
         </Link>
@@ -16,7 +16,7 @@ const DashboardNav = () => {
       <li className="nav-item">
         <Link
           className={`nav-link ${active === '/dashboard/seller' && 'active'}`}
-          href="/dashboard/seller"
+          href="/profile/dashboard-seller"
         >
           Your Hotels
         </Link>

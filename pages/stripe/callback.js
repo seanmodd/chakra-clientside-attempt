@@ -29,7 +29,7 @@ const StripeCallback = () => {
           payload: res.data,
         });
         // redirect user to dashboard
-        router.push('/dashboard/seller');
+        router.push('profile/dashboard-seller');
       });
     } catch (err) {
       console.log(err);

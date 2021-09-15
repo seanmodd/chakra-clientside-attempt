@@ -24,7 +24,7 @@ const TopNav = () => {
       </Link>
 
       {auth !== null && (
-        <Link className="nav-link" href="/dashboard">
+        <Link className="nav-link" href="/profile/dashboard">
           Dashboard
         </Link>
       )}
@@ -37,10 +37,10 @@ const TopNav = () => {
 
       {auth === null && (
         <>
-          <Link className="nav-link" href="/login">
+          <Link className="nav-link" href="/auth/login">
             Login
           </Link>
-          <Link className="nav-link" href="/register">
+          <Link className="nav-link" href="/auth/register">
             Register
           </Link>
         </>

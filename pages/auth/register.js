@@ -20,7 +20,7 @@ const Register = () => {
       });
       console.log('REGISTER USER ===> ', res);
       toast.success('Register success. Please login.');
-      router.push('/login');
+      router.push('/auth/login');
     } catch (err) {
       console.log(err);
       if (err.response.status === 400) toast.error(err.response.data);
