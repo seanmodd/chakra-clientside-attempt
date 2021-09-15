@@ -27,6 +27,7 @@ const ViewHotel = () => {
   console.log(router, 'router');
   const { auth } = useSelector((state) => state);
 
+  console.log('hotelID: ', hotelId);
   useEffect(() => {
     loadSellerHotel();
   }, []);
