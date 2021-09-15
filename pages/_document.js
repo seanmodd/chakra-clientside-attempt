@@ -13,6 +13,7 @@ export default class Document extends NextDocument {
             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
             crossOrigin="anonymous"
           />
+          <script src="https://js.stripe.com/v3/" />
           {/* Make Color mode to persists when you refresh the page. */}
           <ColorModeScript />
           <Main />

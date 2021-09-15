@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
 import { getSessionId } from '../../redux/actions/stripe';
 import { read, diffDays, isAlreadyBooked } from '../../redux/actions/hotel';
+import { getServerSideProps } from '../../.next/static/chunks/pages';
 
 const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
 const BASE_STRIPE_KEY =
@@ -22,6 +23,7 @@ const ViewHotel = () => {
   const {
     query: { hotelId },
   } = router;
+  console.log('hotelId:', hotelId);
   console.log(router, 'router');
   const { auth } = useSelector((state) => state);
 
@@ -39,11 +41,14 @@ const ViewHotel = () => {
   }, [auth, hotelId]);
 
   const loadSellerHotel = async () => {
-    const res = await read(hotelId);
-    // console.log(res);
-    setHotel(res.data);
-    console.log(res.data, 'image on detail');
-    setImage(`${BASE_URL}/hotel/image/${res.data._id}`);
+    // TODO: implement getStaticProps/paths instead
+    if (hotelId) {
+      const res = await read(hotelId);
+      // console.log(res);
+      setHotel(res.data);
+      console.log(res.data, 'image on detail');
+      setImage(`${BASE_URL}/hotel/image/${res.data._id}`);
+    }
   };
 
   const handleClick = async (e) => {
@@ -80,7 +85,7 @@ const ViewHotel = () => {
     // console.log("get sessionid resposne", res.data.sessionId);
     const stripe = await loadStripe(BASE_STRIPE_KEY);
     console.log(stripe, 'stripe');
-    return;
+    // return;
     const { error } = await stripe.redirectToCheckout({
       // Make the id field from the Checkout Session creation API response
       // available to this file, so you can provide it as parameter here
