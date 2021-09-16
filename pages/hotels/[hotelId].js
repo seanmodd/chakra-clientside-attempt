@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
 import { getSessionId } from '../../redux/actions/stripe';
 import { read, diffDays, isAlreadyBooked } from '../../redux/actions/hotel';
-import { getServerSideProps } from '../../.next/static/chunks/pages';
+// import { getServerSideProps } from '../../.next/static/chunks/pages';
 
 const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000/api';
 const BASE_STRIPE_KEY =
