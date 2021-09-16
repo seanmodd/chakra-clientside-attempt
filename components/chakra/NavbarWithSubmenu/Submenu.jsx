@@ -1,14 +1,20 @@
-import { useNavMenu } from './useNavMenu'
-import { Box, Collapse, SimpleGrid, useDisclosure } from '@chakra-ui/react'
-import * as React from 'react'
-import { FaChevronDown } from 'react-icons/fa'
-import { NavLink } from './NavLink'
-import { NavMenu } from './NavMenu'
-import { SubmenuItem as DesktopMenuItem } from './SubmenuItem'
+import {
+  Box,
+  Collapse,
+  useColorModeValue as mode,
+  SimpleGrid,
+  useDisclosure,
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { FaChevronDown } from 'react-icons/fa';
+import { useNavMenu } from './useNavMenu';
+import { NavLink } from './NavLink';
+import { NavMenu } from './NavMenu';
+import { SubmenuItem as DesktopMenuItem } from './SubmenuItem';
 
 const DesktopSubmenu = (props) => {
-  const { link } = props
-  const { isOpen, getMenuProps, getTriggerProps } = useNavMenu()
+  const { link } = props;
+  const { isOpen, getMenuProps, getTriggerProps } = useNavMenu();
   return (
     <>
       <NavLink.Desktop
@@ -16,6 +22,7 @@ const DesktopSubmenu = (props) => {
         alignItems="center"
         as="button"
         type="button"
+        zIndex="9999999"
         px="4"
         fontWeight="semibold"
         {...getTriggerProps()}
@@ -24,11 +31,21 @@ const DesktopSubmenu = (props) => {
         <Box marginStart="2" as={FaChevronDown} fontSize="xs" />
       </NavLink.Desktop>
 
-      <NavMenu {...getMenuProps()} animate={isOpen ? 'open' : 'closed'}>
-        <Box maxW="7xl" mx="auto" px="8">
-          <SimpleGrid spacing="10" columns={2}>
+      <NavMenu
+        {...getMenuProps()}
+        zIndex="9999999"
+        animate={isOpen ? 'open' : 'closed'}
+      >
+        <Box maxW="7xl" zIndex="9999999" mx="auto" px="8">
+          <SimpleGrid zIndex="9999999" spacing="10" columns={2}>
             {link.children?.map((item, idx) => (
-              <DesktopMenuItem key={idx} title={item.label} href={item.href} icon={item.icon}>
+              <DesktopMenuItem
+                key={idx}
+                title={item.label}
+                href={item.href}
+                zIndex="9999999"
+                icon={item.icon}
+              >
                 {item.description}
               </DesktopMenuItem>
             ))}
@@ -36,24 +53,30 @@ const DesktopSubmenu = (props) => {
         </Box>
       </NavMenu>
     </>
-  )
-}
+  );
+};
 
 const MobileSubMenu = (props) => {
-  const { link } = props
-  const { isOpen, onToggle } = useDisclosure()
+  const { link } = props;
+  const { isOpen, onToggle } = useDisclosure();
   return (
     <Box>
       <NavLink.Mobile
         as="button"
         textAlign="start"
         type="button"
+        borderRadius="0px"
+        w="100%"
         cursor="pointer"
+        bg={mode('gray.50', 'gray.900')}
         onClick={onToggle}
-        paddingEnd="4"
+        // paddingEnd="4"
       >
         <Box flex="1">{link.label}</Box>
-        <Box as={FaChevronDown} transform={`rotate(${isOpen ? '180deg' : '0deg'})`} />
+        <Box
+          as={FaChevronDown}
+          transform={`rotate(${isOpen ? '180deg' : '0deg'})`}
+        />
       </NavLink.Mobile>
       <Collapse in={isOpen}>
         <Box pl="5">
@@ -65,10 +88,10 @@ const MobileSubMenu = (props) => {
         </Box>
       </Collapse>
     </Box>
-  )
-}
+  );
+};
 
 export const Submenu = {
   Mobile: MobileSubMenu,
   Desktop: DesktopSubmenu,
-}
+};

@@ -1,12 +1,20 @@
-import { Box, Center, chakra, HStack, Text, useColorModeValue as mode } from '@chakra-ui/react'
-import * as React from 'react'
-import { FaChevronRight } from 'react-icons/fa'
+import {
+  Box,
+  Center,
+  chakra,
+  HStack,
+  Text,
+  useColorModeValue as mode,
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { FaChevronRight } from 'react-icons/fa';
 
 export const SubmenuItem = (props) => {
-  const { title, icon, children, href, ...rest } = props
+  const { title, icon, children, href, ...rest } = props;
   return (
     <chakra.a
       className="group"
+      zIndex="9999999"
       href={href}
       m="-3"
       p="3"
@@ -27,15 +35,17 @@ export const SubmenuItem = (props) => {
         as="span"
         flexShrink={0}
         w="10"
+        zIndex="9999999"
         h="10"
         fontSize="3xl"
         color={mode('blue.600', 'blue.400')}
       >
         {icon}
       </Center>
-      <Box marginStart="3" as="dl">
-        <HStack as="dt">
+      <Box marginStart="3" zIndex="9999999" as="dl">
+        <HStack zIndex="9999999" as="dt">
           <Text
+            zIndex="9999999"
             fontWeight="semibold"
             color={mode('gray.900', 'white')}
             _groupHover={{
@@ -46,6 +56,7 @@ export const SubmenuItem = (props) => {
           </Text>
           <Box
             fontSize="xs"
+            zIndex="9999999"
             as={FaChevronRight}
             transition="all 0.2s"
             _groupHover={{
@@ -59,5 +70,5 @@ export const SubmenuItem = (props) => {
         </Text>
       </Box>
     </chakra.a>
-  )
-}
+  );
+};

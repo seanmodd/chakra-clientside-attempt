@@ -4,11 +4,11 @@ import { MdWeb } from 'react-icons/md'
 
 export const links = [
   {
-    label: 'For Designers',
+    label: 'Rent Now',
     href: '#',
   },
   {
-    label: 'For Teams',
+    label: 'Become a Host',
     href: '#',
   },
   {
@@ -16,19 +16,19 @@ export const links = [
     children: [
       {
         label: 'Get Help',
-        description: 'Read our documentation and FAQs, or get in touch.',
+        description: 'Read our FAQ, or get in touch.',
         href: '#',
         icon: <IoHelpBuoy />,
       },
       {
-        label: 'Events & Meetups',
-        description: 'Discover and join your local Sketch community.',
+        label: 'Dashboard',
+        description: 'Find out what you have booked in your dashboard!',
         href: '#',
         icon: <IoCalendar />,
       },
       {
-        label: 'Extensions',
-        description: 'Do even more with Assistants, plugins and integrations.',
+        label: 'Profille',
+        description: 'Check out your profile and account details.',
         href: '#',
         icon: <IoGrid />,
       },

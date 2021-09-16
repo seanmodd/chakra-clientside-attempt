@@ -2,17 +2,12 @@ import {
   Box,
   Button,
   Flex,
-  Heading,
   HStack,
-  VStack,
   useDisclosure,
   VisuallyHidden,
-  Image,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
 import { Logo } from './Logo';
 import { NavLink } from './NavLink';
 import { NavMenu } from './NavMenu';
@@ -22,198 +17,136 @@ import { links } from './_data';
 
 const MobileNavContext = (props) => {
   const { isOpen, onToggle } = useDisclosure();
-  const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
-  // const history = useHistory();
-
-  const logout = () => {
-    dispatch({
-      type: 'LOGOUT',
-      payload: null,
-    });
-    window.localStorage.removeItem('auth');
-    // history.push('/login');
-  };
   return (
     <>
-      <HStack
-        spacing="50px"
+      <Flex
         align="center"
         justify="space-between"
         className="nav-content__mobile"
+        color={mode('gray.900', 'gray.50')}
+        justifyContent="space-between"
+        minW="90vw"
+        maxW="90vw"
+        bg={mode('gray.50', 'gray.900')}
         {...props}
-        my="20px"
-        mx="40px"
       >
-        <Box flexBasis="6rem">
+        <Box ml="15px" mt="15px" flexBasis="6rem">
           <ToggleButton isOpen={isOpen} onClick={onToggle} />
         </Box>
-        <HStack
-          href="#"
-          rel="home"
-          boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-          borderRadius="10px"
-          pt="5px"
-          bg="gray.50"
-          justify="center"
-          px="35px"
-        >
-          <Heading fontSize="40px">NextCar</Heading>
-          {/* <Logo h="6" iconColor="blue.500" /> */}
-          <Image
-            w="20px"
-            src="https://res.cloudinary.com/seanmodd/image/upload/v1629613337/face_4_2b9c52a196.png"
-          />
-        </HStack>
+        <Box as="a" rel="home" mx="auto">
+          <Logo h="24px" iconColor="blue.400" />
+        </Box>
         <Box
           visibility={{
             base: 'hidden',
             sm: 'visible',
           }}
         >
-          <Button as="a" colorScheme="blue">
+          <Button
+            fontColor={mode('gray.900', 'gray.50')}
+            bg={mode('blue.400', 'blue.400')}
+            as="a"
+            colorScheme="blue"
+            ml="-60px"
+            mr="60px"
+          >
             Get Started
           </Button>
         </Box>
-      </HStack>
-      <NavMenu animate={isOpen ? 'open' : 'closed'}>
-        {/* {links.map((link, idx) =>
+      </Flex>
+      <NavMenu
+        color={mode('gray.900', 'gray.50')}
+        bg={mode('gray.50', 'gray.900')}
+        animate={isOpen ? 'open' : 'closed'}
+      >
+        {links.map((link, idx) =>
           link.children ? (
-            <Submenu.Mobile key={idx} link={link} />
+            <Submenu.Mobile
+              color={mode('gray.900', 'gray.50')}
+              key={idx}
+              bg={mode('gray.50', 'gray.900')}
+              link={link}
+            />
           ) : (
-            <NavLink.Mobile key={idx} href={link.href}>
+            <NavLink.Mobile
+              color={mode('gray.900', 'gray.50')}
+              bg={mode('gray.50', 'gray.900')}
+              key={idx}
+              href={link.href}
+            >
               {link.label}
             </NavLink.Mobile>
           )
-        )} */}
-        <VStack spacing="30px" mb="30px">
-          <Link href="/pricing">Home</Link>
-
-          {auth !== null && (
-            <Link className="nav-link" href="/profile/dashboard">
-              Dashboard
-            </Link>
-          )}
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/faq">FAQ</Link>
-          {auth !== null && (
-            <Button w="full" className="nav-link pointer" onClick={logout}>
-              <Link passHref>Logout</Link>
-            </Button>
-          )}
-        </VStack>
-        {auth === null && (
-          <>
-            <VStack spacing="30px">
-              <Button w="full">
-                <Link className="nav-link" href="/auth/login">
-                  Login
-                </Link>
-              </Button>
-              <Button w="full">
-                <Link className="nav-link" href="/auth/register">
-                  Register
-                </Link>
-              </Button>
-            </VStack>
-          </>
-        )}{' '}
+        )}
+        <Button
+          bg={mode('blue.400', 'blue.400')}
+          colorScheme="blue"
+          w="full"
+          size="lg"
+          mt="5"
+        >
+          Try for free
+        </Button>
       </NavMenu>
     </>
   );
 };
 
-const DesktopNavContent = (props) => {
-  const dispatch = useDispatch();
-  const { auth } = useSelector((state) => ({ ...state }));
-  // const history = useHistory();
-
-  const logout = () => {
-    dispatch({
-      type: 'LOGOUT',
-      payload: null,
-    });
-    window.localStorage.removeItem('auth');
-    // history.push('/login');
-  };
-  return (
-    <Flex
-      className="nav-content__desktop"
-      align="center"
-      justify="space-around"
-      {...props}
-      my="50px"
+const DesktopNavContent = (props) => (
+  <Flex
+    className="nav-content__desktop"
+    align="center"
+    justify="space-between"
+    position="fixed"
+    zIndex="2"
+    w="100vw"
+    bg="red.500"
+    bg={mode('gray.50', 'gray.900')}
+    px="80px"
+    {...props}
+  >
+    <Box as="a" href="#" rel="home">
+      <Logo h="6" iconColor="blue.500" />
+    </Box>
+    <HStack
+      as="ul"
+      id="nav__primary-menu"
+      aria-label="Main Menu"
+      listStyleType="none"
     >
-      <HStack
+      {links.map((link, idx) => (
+        <Box as="li" key={idx} id={`nav__menuitem-${idx}`}>
+          {link.children ? (
+            <Submenu.Desktop zIndex="9999999" link={link} />
+          ) : (
+            <NavLink.Desktop zIndex="9999999" href={link.href}>
+              {link.label}
+            </NavLink.Desktop>
+          )}
+        </Box>
+      ))}
+    </HStack>
+    <HStack spacing="4" minW="200px" mr="60px" justify="space-between">
+      <Box
+        as="a"
         href="#"
-        rel="home"
-        boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-        borderRadius="10px"
-        justify="center"
-        pt="5px"
-        bg="gray.50"
-        px="15px"
+        color={mode('blue.600', 'blue.300')}
+        fontWeight="bold"
       >
-        <Heading fontSize="40px">NextCar</Heading>
-        {/* <Logo h="6" iconColor="blue.500" /> */}
-        <Image
-          w="20px"
-          src="https://res.cloudinary.com/seanmodd/image/upload/v1629613337/face_4_2b9c52a196.png"
-        />
-      </HStack>
-      <HStack
-        as="ul"
-        id="nav__primary-menu"
-        aria-label="Main Menu"
-        listStyleType="none"
-        // w="400px"
-        spacing="60px"
-        justify="space-between"
+        Sign In
+      </Box>
+      <Button
+        bg={mode('blue.400', 'blue.400')}
+        as="a"
+        href="#"
+        colorScheme="blue"
+        fontWeight="bold"
       >
-        <Link className="nav-link" href="/">
-          Home
-        </Link>
-        {auth !== null && (
-          <>
-            <Box as="li">
-              <Link className="nav-link" href="/profile/dashboard">
-                Dashboard
-              </Link>
-            </Box>
-            <Box as="li">
-              <Link className="nav-link" href="/profile/dashboard-seller">
-                Create Posting!
-              </Link>
-            </Box>
-          </>
-        )}
-        <Link className="nav-link" href="/pricing">
-          Pricing
-        </Link>
-        <Link className="nav-link" href="/faq">
-          FAQ
-        </Link>
-      </HStack>
-      <HStack spacing="8" minW="240px" justify="flex-end">
-        {auth === null && (
-          <>
-            <Button>
-              <Link className="nav-link" href="/auth/login">
-                Login
-              </Link>
-            </Button>
-            <Button>
-              <Link className="nav-link" href="/auth/register">
-                Register
-              </Link>
-            </Button>
-          </>
-        )}
-        {auth !== null && <a onClick={logout}>Logout</a>}
-      </HStack>
-    </Flex>
-  );
-};
+        Sign up for free
+      </Button>
+    </HStack>
+  </Flex>
+);
 
 export const NavContent = {
   Mobile: MobileNavContext,
