@@ -7,7 +7,9 @@ import {
   VisuallyHidden,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
+
 import * as React from 'react';
+
 import { Logo } from './Logo';
 import { NavLink } from './NavLink';
 import { NavMenu } from './NavMenu';
@@ -25,15 +27,15 @@ const MobileNavContext = (props) => {
         className="nav-content__mobile"
         color={mode('gray.900', 'gray.50')}
         justifyContent="space-between"
-        minW="90vw"
-        maxW="90vw"
+        minW="100vw"
+        // maxW="90vw"
         bg={mode('gray.50', 'gray.900')}
         {...props}
       >
         <Box ml="15px" mt="15px" flexBasis="6rem">
           <ToggleButton isOpen={isOpen} onClick={onToggle} />
         </Box>
-        <Box as="a" rel="home" mx="auto">
+        <Box as="a" rel="home" textDecoration="none" mx="auto">
           <Logo h="24px" iconColor="blue.400" />
         </Box>
         <Box
@@ -47,8 +49,8 @@ const MobileNavContext = (props) => {
             bg={mode('blue.400', 'blue.400')}
             as="a"
             colorScheme="blue"
-            ml="-60px"
-            mr="60px"
+            ml="-30px"
+            mr={['90px', '130px', '130px', '0px']}
           >
             Get Started
           </Button>
@@ -98,35 +100,58 @@ const DesktopNavContent = (props) => (
     align="center"
     justify="space-between"
     position="fixed"
-    zIndex="2"
-    w="100vw"
-    bg="red.500"
+    width="100%"
+    pr="80px"
+    // zIndex="1000"
+    textDecoration="none"
+    // w="100vw"
+
     bg={mode('gray.50', 'gray.900')}
-    px="80px"
+    // px="80px"
     {...props}
   >
-    <Box as="a" href="#" rel="home">
+    <Box textDecoration="none" as="a" href="#" rel="home">
       <Logo h="6" iconColor="blue.500" />
     </Box>
     <HStack
       as="ul"
       id="nav__primary-menu"
       aria-label="Main Menu"
+      spacing="20px"
       listStyleType="none"
     >
       {links.map((link, idx) => (
-        <Box as="li" key={idx} id={`nav__menuitem-${idx}`}>
+        <Box
+          textDecoration="none"
+          as="li"
+          key={idx}
+          id={`nav__menuitem-${idx}`}
+        >
           {link.children ? (
-            <Submenu.Desktop zIndex="9999999" link={link} />
+            <Submenu.Desktop
+              zIndex="9999999"
+              textDecoration="none"
+              link={link}
+            />
           ) : (
-            <NavLink.Desktop zIndex="9999999" href={link.href}>
+            <NavLink.Desktop
+              textDecoration="none"
+              zIndex="9999999"
+              href={link.href}
+            >
               {link.label}
             </NavLink.Desktop>
           )}
         </Box>
       ))}
     </HStack>
-    <HStack spacing="4" minW="200px" mr="60px" justify="space-between">
+    <HStack
+      mb="15px"
+      spacing="4"
+      minW="30vw"
+      // mr="20px"
+      // justify="space-between"
+    >
       <Box
         as="a"
         href="#"

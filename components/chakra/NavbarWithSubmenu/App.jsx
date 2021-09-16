@@ -8,6 +8,7 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+
 import * as React from 'react';
 
 import { NavContent } from './NavContent';
@@ -21,6 +22,7 @@ const App = () => (
         bg={mode('gray.50', 'gray.900')}
         maxW="7xl"
         mx="auto"
+        textDecoration="none"
         px={{
           base: '6',
           md: '0',
@@ -34,10 +36,13 @@ const App = () => (
           }}
         />
         <NavContent.Desktop
+          textDecoration="none"
           display={{
             base: 'none',
-            lg: 'flex',
+            md: 'fixed',
+            lg: 'fixed',
           }}
+          display={['none', 'none', 'none', 'fixed', 'fixed']}
         />
       </Box>
     </Box>
@@ -59,9 +64,10 @@ const DarkModeSwitch = ({ children }) => {
     <>
       <HStack
         position="fixed"
-        top={['10px', '17px', '17px', '17px']}
+        top={['10px', '16px', '16px', '16px']}
         right="-30px"
         zIndex="10"
+        // backgroundColor="red.500"
         // borderWidth="4px"
         // backgroundColor={bgColor[colorMode]}
         // w="100vw"

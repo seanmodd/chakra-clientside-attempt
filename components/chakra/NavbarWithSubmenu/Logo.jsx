@@ -1,5 +1,7 @@
 import { chakra, Heading, useToken } from '@chakra-ui/react';
+
 import * as React from 'react';
+
 import Link from 'next/link';
 
 export const Logo = (props) => {
@@ -13,6 +15,7 @@ export const Logo = (props) => {
           bgGradient="linear(to-l, #2d3848, #90cdf4)"
           bgClip="text"
           ml="15px"
+          textDecoration="none"
           mr="40px"
         >
           NextCar

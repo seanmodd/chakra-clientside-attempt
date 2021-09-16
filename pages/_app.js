@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
           }}
         >
           <MyBox>
-            <TopNav />
+            {/* <TopNav /> */}
 
             <NavbarWithSubmenu />
             {/* <DarkModeSwitch /> */}

@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { IoCalendar, IoGrid, IoHelpBuoy } from 'react-icons/io5'
-import { MdWeb } from 'react-icons/md'
+import * as React from 'react';
+import { IoCalendar, IoGrid, IoHelpBuoy } from 'react-icons/io5';
+import { MdWeb } from 'react-icons/md';
 
 export const links = [
   {
@@ -8,7 +8,11 @@ export const links = [
     href: '#',
   },
   {
-    label: 'Become a Host',
+    label: 'Host Today',
+    href: '#',
+  },
+  {
+    label: 'Pricing',
     href: '#',
   },
   {
@@ -40,8 +44,4 @@ export const links = [
       },
     ],
   },
-  {
-    label: 'Pricing',
-    href: '#',
-  },
-]
+];

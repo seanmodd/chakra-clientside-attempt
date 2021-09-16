@@ -52,9 +52,12 @@ const theme = extendTheme({
       a: {
         fontFamily: 'Poppins',
         fontSize: '0.9em',
+        textAlign: 'center',
+        textDecoration: 'none',
       },
       button: {
         px: '2',
+        textDecoration: 'none',
         py: '2',
         fontFamily: 'Poppins, sans-serif',
         mx: '1',
