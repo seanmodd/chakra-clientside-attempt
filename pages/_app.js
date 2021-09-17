@@ -6,6 +6,11 @@ import {
   IconButton,
   HStack,
 } from '@chakra-ui/react';
+import '../styles/globals.css';
+import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
+import 'react-datetime-picker/dist/DateTimePicker.css';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore } from 'redux';
@@ -30,8 +35,9 @@ function MyApp({ Component, pageProps }) {
 
             <NavbarWithSubmenu />
             {/* <DarkModeSwitch /> */}
-
-            <Component {...pageProps} />
+            <ContentBox>
+              <Component {...pageProps} />
+            </ContentBox>
             <SimpleFooter />
           </MyBox>
         </ColorModeProvider>
@@ -58,6 +64,24 @@ const MyBox = ({ children }) => {
         px={['0px', '0px', '0px', '0px']}
         bg={bgColor[colorMode]}
       >
+        {children}
+      </Box>
+    </>
+  );
+};
+const ContentBox = ({ children }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const iconColor = {
+    light: 'black',
+    dark: 'white',
+  };
+  const bgColor = {
+    light: 'gray.50',
+    dark: 'gray.900',
+  };
+  return (
+    <>
+      <Box pt="100px" px={['0px', '0px', '0px', '0px']} bg={bgColor[colorMode]}>
         {children}
       </Box>
     </>

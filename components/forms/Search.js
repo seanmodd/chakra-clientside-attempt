@@ -1,17 +1,34 @@
+// import 'react-dates/initialize';
+import { Box, Flex, VStack, Heading, HStack, Select } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { DatePicker, Select } from 'antd';
+// import { DatePicker, Select } from 'antd';
+// import RangePicker from 'react-range-picker';
+import DatePicker from 'react-multi-date-picker';
+import { DateObject } from 'react-multi-date-picker';
+import DatePanel from 'react-multi-date-picker/plugins/date_panel';
 import { SearchOutlined } from '@ant-design/icons';
 import AlgoliaPlaces from 'algolia-places-react';
 import moment from 'moment';
 
 // destructure values from ant components
-const { RangePicker } = DatePicker;
-const { Option } = Select;
+// const { RangePicker } = DatePicker;
+// const { Option } = Select;
 
 const config = {
   appId: process.env.REACT_APP_ALGOLIA_APP_ID,
   apiKey: process.env.REACT_APP_ALGOLIA_API_KEY,
   language: 'en',
+  // accessibility: {
+  //   pinButton: {
+  //     'aria-label': 'use browser geolocation',
+  //     display: 'none',
+  //   },
+  //   clearButton: {
+  //     'tab-index': 13,
+  //     display: 'none',
+  //   },
+  // },
+  style: true,
   // countries: ["au"],
 };
 
@@ -25,28 +42,71 @@ const Search = () => {
   const handleSubmit = () => {
     history.push(`/search-result?location=${location}&date=${date}&bed=${bed}`);
   };
+  const [values, setValues] = useState([
+    new DateObject().subtract(4, 'days'),
+    new DateObject().add(4, 'days'),
+  ]);
 
   return (
-    <div className="d-flex pb-4">
-      <div className="w-100">
-        <AlgoliaPlaces
-          placeholder="Location"
-          defaultValue={location}
-          options={config}
-          onChange={({ suggestion }) => setLocation(suggestion.value)}
-          style={{ height: '50px' }}
-        />
-      </div>
+    <HStack
+      // my="0px"
 
-      <RangePicker
+      alignItems="center"
+      w="100vw"
+      // style={{ marginTop: '0px', marginBottom: '0px' }}
+      justifyContent="center"
+    >
+      <HStack>
+        <Box height="80px">
+          <AlgoliaPlaces
+            className="algolia-places"
+            placeholder="Location"
+            defaultValue={location}
+            options={config}
+            onChange={({ suggestion }) => setLocation(suggestion.value)}
+            style={{
+              fontFamily: 'Poppins',
+              fontSize: '14px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderColor: 'none',
+
+              color: '#676767ec',
+              borderRadius: '5px',
+            }}
+          />
+        </Box>
+        <Box h="80px">
+          <DatePicker
+            value={values}
+            style={{
+              fontFamily: 'Poppins',
+              fontSize: '14px',
+              height: '40px',
+              borderColor: 'none',
+              color: '#989898eb',
+              borderRadius: '5px',
+            }}
+            onChange={(value, dateString) => setDate(dateString)}
+            disabledDate={(current) =>
+              current && current.valueOf() < moment().subtract(1, 'days')
+            }
+            range
+            plugins={[<DatePanel />]}
+          />
+        </Box>
+
+        {/* <RangePicker
+        style={{ marginTop: '0px', marginBottom: '0px' }}
         onChange={(value, dateString) => setDate(dateString)}
         disabledDate={(current) =>
           current && current.valueOf() < moment().subtract(1, 'days')
         }
-        className="w-100"
-      />
+        // className="w-100"
+      /> */}
 
-      <Select
+        {/* <Select
+        
         onChange={(value) => setBed(value)}
         className="w-100"
         size="large"
@@ -56,13 +116,22 @@ const Search = () => {
         <Option key={2}>{2}</Option>
         <Option key={3}>{3}</Option>
         <Option key={4}>{4}</Option>
-      </Select>
-
-      <SearchOutlined
-        onClick={handleSubmit}
-        className="btn btn-primary p-3 btn-square"
-      />
-    </div>
+      </Select> */}
+        <Box h="80px">
+          <Select color="#989898eb" placeholder="Capacity">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6+">6+</option>
+          </Select>
+        </Box>
+        <Box h="80px">
+          <SearchOutlined
+            onClick={handleSubmit}
+            style={{ color: '#00a2ffeb' }}
+          />
+        </Box>
+      </HStack>
+    </HStack>
   );
 };
 

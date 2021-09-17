@@ -1,0 +1,170 @@
+/* Main input wrapper */
+.algolia-places {
+    /* background-color: #fff; */
+    color: #444343;
+    font-size: 13px;
+
+}
+.ap-icon-pin {
+    /* background-color: #fff; */
+    /* color: #444343; */
+    /* display: none; */
+
+
+}
+/* The algolia-places input */
+.ap-input, .ap-hint {
+
+    /* background-color: #fff; */
+    color: #444343;
+
+
+}
+
+/* The style of the svg icons when the input is on hover */
+.ap-input:hover ~ .ap-input-icon svg,
+.ap-input:focus ~ .ap-input-icon svg,
+.ap-input-icon:hover svg {
+    /* background-color: #fff; */
+    color: #444343;
+
+}
+
+/* The dropdown style */
+.ap-dropdown-menu {
+
+border-radius: 20px;
+top: 0;
+padding: 0;
+margin: 0;
+
+    width: 400px;
+    color: #444343;
+}
+
+/* The suggestions style */
+.ap-suggestion {
+
+    display: fixed;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #fff;
+    font-family: "Poppins";
+    color: #444343;
+}
+
+/* The highlighted names style */
+.ap-suggestion em {
+    
+    font-size: 12px;
+    border-radius: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+     color: #171923; 
+     background-color: rgba(129, 190, 255, 0.162); 
+    /* background-color: #171923; */
+    /* color: #fff; */
+}
+
+/* The addresses style */
+.ap-address em {
+
+    fontFamily: 'Poppins';
+
+    width: 10px;
+    font-size: 11px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding-left: 1px;
+    padding-right: 1px;
+    /* background-color: rgba(0, 123, 255, 0.29); */
+    /* color: #171923 */
+    background-color: #171923;
+    color: #fff;
+}
+.ap-address {
+
+    fontFamily: 'Poppins';
+    
+    font-size: 11px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* background-color: rgba(0, 123, 255, 0.29);
+    color: #171923 */
+    background-color: #171923;
+    color: #fff;
+}
+
+/* The icons of each suggestions ( can be a building or a pin ) */
+.ap-suggestion-icon {
+
+    
+    /* display: none; */
+    color: #007bff;
+}
+
+/* The style of the svg inside the .ap-suggestion-icon */
+.ap-suggestion-icon svg {
+    
+    color: #007bff;
+
+
+    /* width: 400px; */
+}
+
+/* The icons inside the input ( can be a pin or a cross ) */
+.ap-input-icon {
+    display: none;
+    width: 1px;
+    background-color: #fff;
+    color: #fff;}
+
+/* The style of the svg inside the .ap-input-icon */
+.ap-input-icon svg {background-color: #fff;
+    width: 1px;
+    color: #green;;}
+
+/* .a-cursor is the class a suggestion go on hover */
+.ap-cursor {background-color: rgba(0, 123, 255, 0.447);
+
+    color: #444343;;}
+
+    
+
+/* The style of the svg icon, when the .ap-suggestion is on hover */
+.ap-cursor .ap-suggestion-icon svg {
+border-radius: 6px;
+padding: 5px;
+width: 35px;
+height: 35px;
+    color: #fff;}
+
+/* The styles of the Algolia Places input footer */
+.ap-footer {
+    /* display: none; */
+    background-color: #fff;
+    width: 300px;
+    color: #fff;;}
+
+/* The styles of the Algolia Places input footer links */
+.ap-footer a {
+    display: none;
+    background-color: #fff;
+    color: #fff;}
+
+/* The styles of the Algolia Places input footer svg icons */
+.ap-footer a svg {
+    height: 100px;
+    display: box;
+    width: 300px;
+    background-color: #fff;
+    color: #fff;;}
+
+/* The styles of the Algolia Places input footer on hover */
+.ap-footer:hover a {
+
+    background-color: #fff;
+    color: #fff;;}
+

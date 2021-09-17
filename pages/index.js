@@ -1,7 +1,9 @@
+import { VStack } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { allHotels } from '../redux/actions/hotel';
 import SmallCard from '../components/cards/SmallCard';
 import Search from '../components/forms/Search';
+import SearchOriginal from '../components/forms/SearchOriginal';
 
 const Home = (props) => {
   const [hotels, setHotels] = useState([]);
@@ -18,13 +20,11 @@ const Home = (props) => {
   };
 
   return (
-    <>
-      <div className="container-fluid bg-secondary p-5 text-center">
-        <h1>NEXT.JS: All Cars</h1>
-      </div>
+    <VStack>
       <div className="col">
         <br />
         <Search />
+
       </div>
       <div className="container-fluid">
         <br />
@@ -33,7 +33,7 @@ const Home = (props) => {
           <SmallCard key={h._id} h={h} />
         ))}
       </div>
-    </>
+    </VStack>
   );
 };
 
