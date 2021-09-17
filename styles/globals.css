@@ -28,6 +28,9 @@
 .ap-input, .ap-hint {
     border-width: 1px;
     border-color: #c0c4d6;
+    width: 400px;
+    margin-right: -60px;
+
     border-radius: 6px;
     /* background-color: #fff; */
 
@@ -47,10 +50,18 @@
 /* The dropdown style */
 .ap-dropdown-menu {
 
-border-radius: 20px;
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+box-shadow: "none";
+
 top: 0;
 padding: 0;
-margin: 0;
+margin-right: -55px;
+justify-content: center;
+align-items: center;
+margin-top: -40px;
 
     width: 400px;
     color: #444343;
@@ -170,9 +181,9 @@ height: 35px;
 
 /* The styles of the Algolia Places input footer svg icons */
 .ap-footer a svg {
-    height: 100px;
+    /* height: 100px; */
     display: box;
-    width: 300px;
+    width: 500px;
     background-color: #fff;
     color: #fff;;}
 

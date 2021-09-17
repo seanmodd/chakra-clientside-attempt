@@ -103,7 +103,7 @@ const Search = () => {
           />
         </Box>
         <Box h="80px">
-          <DateRangePicker
+          {/* <DateRangePicker
             initialSettings={{ startDate: { today }, endDate: '10/20/2021' }}
             onChange={(value, dateString) => setDate(dateString)}
             disabledDate={(current) =>
@@ -126,7 +126,7 @@ const Search = () => {
             >
               Available Dates
             </button>
-          </DateRangePicker>
+          </DateRangePicker> */}
         </Box>
 
         {/* <RangePicker
@@ -150,7 +150,7 @@ const Search = () => {
         <Option key={3}>{3}</Option>
         <Option key={4}>{4}</Option>
       </Select> */}
-        <Box h="80px">
+        {/* <Box h="80px">
           <Select
             style={{
               fontFamily: 'Poppins',
@@ -169,8 +169,8 @@ const Search = () => {
             <option value="4">4</option>
             <option value="6+">6+</option>
           </Select>
-        </Box>
-        <Box h="80px">
+        </Box> */}
+        <Box zIndex="10000" h="72px">
           <SearchOutlined
             onClick={handleSubmit}
             style={{ color: '#00a2ffeb' }}

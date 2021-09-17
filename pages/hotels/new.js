@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { Text, VStack } from '@chakra-ui/layout';
+
 // import { DatePicker, Select } from "antd";
 import { useSelector } from 'react-redux';
+import { useColorModeValue } from '@chakra-ui/color-mode';
 import { createHotel } from '../../redux/actions/hotel';
 import HotelCreateForm from '../../components/forms/HotelCreateForm';
 
@@ -93,8 +96,10 @@ const NewHotel = () => {
               alt="preview_image"
               className="img img-fluid m-2"
             />
-            <pre>{JSON.stringify(values, null, 4)}</pre>
-            {JSON.stringify(location)}
+            <Text color={useColorModeValue('gray.900', 'gray.50')}>
+              JSON: {JSON.stringify(values, null, 4)}
+              Location in JSON: {JSON.stringify(location)}
+            </Text>
           </div>
         </div>
       </div>
