@@ -214,7 +214,7 @@ const ViewHotel = () => {
                     fontWeight="medium"
                     color={useColorModeValue('gray.600', 'gray.300')}
                   >
-                    LOCATION
+                    {hotel.location}
                   </Text>
                 </HStack>
               </Wrap>
@@ -232,13 +232,11 @@ const ViewHotel = () => {
                 mt="5"
                 color={useColorModeValue('gray.600', 'gray.300')}
               >
-                {['Adobe Photoshop', 'UX/UI', 'Landing Page', 'Web Design'].map(
-                  (tag) => (
-                    <Tag key={tag} color="inherit" px="3">
-                      {tag}
-                    </Tag>
-                  )
-                )}
+                {['2020', 'Tesla', `Seats ${hotel.bed}`].map((tag) => (
+                  <Tag key={tag} color="inherit" px="3">
+                    {tag}
+                  </Tag>
+                ))}
               </Wrap>
             </Box>
           </Stack>

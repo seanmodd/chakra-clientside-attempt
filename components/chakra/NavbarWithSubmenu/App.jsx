@@ -13,7 +13,7 @@ import * as React from 'react';
 
 import { NavContent } from './NavContent';
 
-const App = () => (
+export const App = () => (
   <Box>
     <Box as="header" position="fixed" zIndex="99999">
       <Box

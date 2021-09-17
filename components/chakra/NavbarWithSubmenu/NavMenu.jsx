@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useColorModeValue } from '@chakra-ui/react';
 import * as React from 'react';
 import { MotionBox } from './MotionBox';

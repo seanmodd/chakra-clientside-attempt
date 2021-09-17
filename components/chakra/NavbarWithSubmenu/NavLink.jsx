@@ -1,7 +1,7 @@
 import { chakra, useColorModeValue as mode } from '@chakra-ui/react';
 
 import * as React from 'react';
-
+import Link from 'next/link';
 const DesktopNavLink = React.forwardRef((props, ref) => {
   const { active, ...rest } = props;
   return (

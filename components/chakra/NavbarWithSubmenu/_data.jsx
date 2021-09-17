@@ -5,41 +5,41 @@ import { MdWeb } from 'react-icons/md';
 export const links = [
   {
     label: 'Rent Now',
-    href: '#',
+    href: '/',
   },
   {
-    label: 'Host Today',
-    href: '#',
+    label: 'Start Today',
+    href: '/start-today',
   },
   {
     label: 'Pricing',
-    href: '#',
+    href: '/pricing',
   },
   {
-    label: 'Resources',
+    label: 'More',
     children: [
       {
         label: 'Get Help',
         description: 'Read our FAQ, or get in touch.',
-        href: '#',
+        href: '/faq',
         icon: <IoHelpBuoy />,
       },
       {
         label: 'Dashboard',
         description: 'Find out what you have booked in your dashboard!',
-        href: '#',
+        href: '/profile/dashboard',
         icon: <IoCalendar />,
       },
       {
         label: 'Profille',
         description: 'Check out your profile and account details.',
-        href: '#',
+        href: '/profile/dashboard-seller',
         icon: <IoGrid />,
       },
       {
         label: 'Blog',
         description: 'Get updates, articles and insights from the team.',
-        href: '#',
+        href: '/blog',
         icon: <MdWeb />,
       },
     ],

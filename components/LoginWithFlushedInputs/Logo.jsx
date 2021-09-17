@@ -11,7 +11,6 @@ export const Logo = (props) => {
     <>
       <Link href="/">
         <Heading
-          _hover={{ textDecoration: 'none' }}
           fontSize="1.0 em"
           bgGradient="linear(to-l, #2d3848, #90cdf4)"
           bgClip="text"

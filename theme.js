@@ -54,6 +54,8 @@ const theme = extendTheme({
         fontSize: '0.9em',
         textAlign: 'center',
         textDecoration: 'none',
+
+        color: props.colorMode === 'dark' ? '#2b6cb0' : 'whiteAlpha.900',
       },
       button: {
         px: '2',
