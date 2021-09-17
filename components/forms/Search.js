@@ -1,5 +1,11 @@
 // import 'react-dates/initialize';
+import { DateRangePickerInput } from 'react-datetime-range-super-picker';
+
 import { Box, Flex, VStack, Heading, HStack, Select } from '@chakra-ui/react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-daterangepicker/daterangepicker.css';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+
 import React, { useState } from 'react';
 // import { DatePicker, Select } from 'antd';
 // import RangePicker from 'react-range-picker';
@@ -46,6 +52,23 @@ const Search = () => {
     new DateObject().subtract(4, 'days'),
     new DateObject().add(4, 'days'),
   ]);
+  let today = new Date();
+  let dd = today.getDate();
+
+  let mm = today.getMonth() + 1;
+  const yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = `0${dd}`;
+  }
+
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
+
+  today = `${mm}/${dd}/${yyyy}`;
+  const twoweeks = `${mm}/${dd + 14}/${yyyy}`;
+  console.log(today);
+  console.log('TWOWEEKS: ', twoweeks);
 
   return (
     <HStack
@@ -77,23 +100,16 @@ const Search = () => {
           />
         </Box>
         <Box h="80px">
-          <DatePicker
-            value={values}
-            style={{
-              fontFamily: 'Poppins',
-              fontSize: '14px',
-              height: '40px',
-              borderColor: 'none',
-              color: '#989898eb',
-              borderRadius: '5px',
-            }}
+          <DateRangePicker
+            initialSettings={{ startDate: { today }, endDate: '9/29/2021' }}
             onChange={(value, dateString) => setDate(dateString)}
             disabledDate={(current) =>
               current && current.valueOf() < moment().subtract(1, 'days')
             }
             range
-            plugins={[<DatePanel />]}
-          />
+          >
+            <button className="date-picker">Available Dates</button>
+          </DateRangePicker>
         </Box>
 
         {/* <RangePicker
@@ -118,7 +134,20 @@ const Search = () => {
         <Option key={4}>{4}</Option>
       </Select> */}
         <Box h="80px">
-          <Select color="#989898eb" placeholder="Capacity">
+          <Select
+            style={{
+              fontFamily: 'Poppins',
+              backgroundColor: '#fff',
+              fontSize: '13px',
+              width: '110px',
+              height: '40px',
+              color: '#a0aec0',
+              borderWidth: '1px',
+              borderColor: '#c0c4d6',
+              borderRadius: '6px',
+            }}
+            placeholder="Capacity"
+          >
             <option value="2">2</option>
             <option value="4">4</option>
             <option value="6+">6+</option>

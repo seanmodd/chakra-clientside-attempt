@@ -1,7 +1,19 @@
+.date-picker {
+    font-family: "Poppins";
+    background-color: #fff;
+    font-size: 13px;
+    height: 40px;
+    width: 150px;
+    color: #a0aec0;
+    color: #c4deff;
+    border-width: 1px;
+    border-color: #c0c4d6;
+    border-radius: 6px;
+}
 /* Main input wrapper */
 .algolia-places {
     /* background-color: #fff; */
-    color: #444343;
+    /* color: #444343; */
     font-size: 13px;
 
 }
@@ -14,9 +26,11 @@
 }
 /* The algolia-places input */
 .ap-input, .ap-hint {
-
+    border-width: 1px;
+    border-color: #c0c4d6;
+    border-radius: 6px;
     /* background-color: #fff; */
-    color: #444343;
+
 
 
 }
