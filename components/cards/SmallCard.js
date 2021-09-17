@@ -272,7 +272,7 @@ function SmallCard({
 }
 
 export default SmallCard;
-
+//! BELOW IS FROM CHAKRA PRO
 const CarCard = () => (
   <Box as="section" bg={useColorModeValue('gray.50', 'gray.900')} py="12">
     <Card>

@@ -54,7 +54,8 @@ const Search = () => {
   ]);
   let today = new Date();
   let dd = today.getDate();
-
+  const mydd = dd + 14;
+  console.log('mydd: ', mydd);
   let mm = today.getMonth() + 1;
   const yyyy = today.getFullYear();
   if (dd < 10) {
@@ -66,9 +67,11 @@ const Search = () => {
   }
 
   today = `${mm}/${dd}/${yyyy}`;
-  const twoweeks = `${mm}/${dd + 14}/${yyyy}`;
-  console.log(today);
-  console.log('TWOWEEKS: ', twoweeks);
+  const intwoweeks = `${mm}/${mydd}/${yyyy}`;
+
+  console.log('TODAY: ', today);
+
+  console.log('intwoweeks: ', intwoweeks);
 
   return (
     <HStack
@@ -101,14 +104,28 @@ const Search = () => {
         </Box>
         <Box h="80px">
           <DateRangePicker
-            initialSettings={{ startDate: { today }, endDate: '9/29/2021' }}
+            initialSettings={{ startDate: { today }, endDate: '10/20/2021' }}
             onChange={(value, dateString) => setDate(dateString)}
             disabledDate={(current) =>
               current && current.valueOf() < moment().subtract(1, 'days')
             }
             range
           >
-            <button className="date-picker">Available Dates</button>
+            <button
+              style={{
+                fontFamily: 'Poppins',
+                fontSize: '14px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderColor: 'none',
+
+                color: '#a0aec0',
+                borderRadius: '5px',
+              }}
+              className="date-picker"
+            >
+              Available Dates
+            </button>
           </DateRangePicker>
         </Box>
 

@@ -1,10 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { HiCash, HiLocationMarker, HiShieldCheck } from 'react-icons/hi';
+import {
+  Avatar,
+  Box,
+  Image,
+  Button,
+  VStack,
+  HStack,
+  Icon,
+  Stack,
+  Tag,
+  Text,
+  useColorModeValue,
+  Wrap,
+} from '@chakra-ui/react';
 // import { useStore } from "react-redux";
 import moment from 'moment';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
+import { CustomerReviews } from '../../components/cards/SingleCar/CustomerReviews';
+import { Card } from '../../components/cards/SingleCar/Card';
+
 import { getSessionId } from '../../redux/actions/stripe';
 import { read, diffDays, isAlreadyBooked } from '../../redux/actions/hotel';
 // import { getServerSideProps } from '../../.next/static/chunks/pages';
@@ -106,54 +125,265 @@ const ViewHotel = () => {
 
   return (
     <>
-      <div className="container-fluid bg-secondary p-5 text-center">
-        <h1>{hotel.title}</h1>
-      </div>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-6">
-            <br />
-            <img src={image} alt={hotel.title} className="img img-fluid m-2" />
-          </div>
+      <Box as="section" bg={useColorModeValue('gray.50', 'gray.900')} py="12">
+        <Card>
+          <Stack
+            direction={{
+              base: 'column',
+              md: 'row',
+            }}
+            spacing={{
+              base: '3',
+              md: '10',
+            }}
+            align="flex-start"
+          >
+            <VStack spacing="4">
+              <Image w="650px" src={image} alt={hotel.title} />
 
-          <div className="col-md-6">
-            <br />
-            <b>{hotel.content}</b>
-            <p className="alert alert-info mt-3">${hotel.price}</p>
-            <p className="card-text">
-              <span className="float-right text-primary">
-                for {diffDays(hotel.from, hotel.to)}{' '}
+              <Button
+                mt="8"
+                width="full"
+                colorScheme="blue"
+                display={{
+                  base: 'none',
+                  md: 'initial',
+                }}
+                onClick={handleClick}
+                disabled={loading || alreadyBooked}
+              >
+                {loading
+                  ? 'Loading...'
+                  : alreadyBooked
+                  ? 'Already Booked'
+                  : auth && auth.token
+                  ? 'Book Now'
+                  : 'Login to Book'}
+              </Button>
+            </VStack>
+            <Box>
+              <Stack
+                spacing={{
+                  base: '0',
+                  md: '0',
+                }}
+                direction={{
+                  base: 'column',
+                  md: 'column',
+                }}
+              >
+                <Text fontWeight="bold" fontSize="xl">
+                  {hotel.title}
+                </Text>
+                <VStack
+                  align="flex-start"
+                  fontSize={{
+                    base: 'sm',
+                    md: 'lg',
+                  }}
+                >
+                  <Text>${hotel.price} per day</Text>
+                  <HStack>
+                    <Icon m="0" p="0" as={HiShieldCheck} color="green.500" />
+                    <Text
+                      pt="5px"
+                      color={useColorModeValue('gray.500', 'gray.300')}
+                    >
+                      <i>Posted by {hotel.postedBy && hotel.postedBy.name}</i>
+                    </Text>
+                  </HStack>
+                </VStack>
+              </Stack>
+              <Wrap shouldWrapChildren my="4" spacing="4">
+                <CustomerReviews reviewCount={84} rating={5.0} />
+                <HStack>
+                  <Icon as={HiCash} fontSize="xl" color="gray.400" />
+                  <Text
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color={useColorModeValue('gray.600', 'gray.300')}
+                  >
+                    <b>$2.5k</b> earned
+                  </Text>
+                </HStack>
+
+                <HStack spacing="1">
+                  <Icon as={HiLocationMarker} color="gray.400" />
+                  <Text
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color={useColorModeValue('gray.600', 'gray.300')}
+                  >
+                    LOCATION
+                  </Text>
+                </HStack>
+              </Wrap>
+              <Box fontSize="sm" noOfLines={2}>
+                <b>{hotel.content}</b>
+              </Box>
+              <p className="card-text">
+                Available for a max of {diffDays(hotel.from, hotel.to)}{' '}
                 {diffDays(hotel.from, hotel.to) <= 1 ? ' day' : ' days'}
-              </span>
-            </p>
-            <p>
-              From <br />{' '}
-              {moment(new Date(hotel.from)).format('MMMM Do YYYY, h:mm:ss a')}
-            </p>
-            <p>
-              To <br />{' '}
-              {moment(new Date(hotel.to)).format('MMMM Do YYYY, h:mm:ss a')}
-            </p>
-            <i>Posted by {hotel.postedBy && hotel.postedBy.name}</i>
-            <br />
-            <button
-              onClick={handleClick}
-              className="btn btn-block btn-lg btn-primary mt-3"
-              disabled={loading || alreadyBooked}
-            >
-              {loading
-                ? 'Loading...'
-                : alreadyBooked
-                ? 'Already Booked'
-                : auth && auth.token
-                ? 'Book Now'
-                : 'Login to Book'}
-            </button>
-          </div>
-        </div>
-      </div>
+              </p>
+              <p>From {moment(new Date(hotel.from)).format('MM/DD/YYYY')}</p>
+              <p>To {moment(new Date(hotel.to)).format('MM/DD/YYYY')}</p>
+              <Wrap
+                shouldWrapChildren
+                mt="5"
+                color={useColorModeValue('gray.600', 'gray.300')}
+              >
+                {['Adobe Photoshop', 'UX/UI', 'Landing Page', 'Web Design'].map(
+                  (tag) => (
+                    <Tag key={tag} color="inherit" px="3">
+                      {tag}
+                    </Tag>
+                  )
+                )}
+              </Wrap>
+            </Box>
+          </Stack>
+
+          <br />
+          <Button
+            mt="8"
+            width="full"
+            colorScheme="blue"
+            display={{
+              md: 'none',
+            }}
+            onClick={handleClick}
+            disabled={loading || alreadyBooked}
+          >
+            {loading
+              ? 'Loading...'
+              : alreadyBooked
+              ? 'Already Booked'
+              : auth && auth.token
+              ? 'Book Now'
+              : 'Login to Book'}
+          </Button>
+        </Card>
+      </Box>
     </>
   );
 };
 
 export default ViewHotel;
+//! BELOW IS FROM CHAKRA PRO
+const CarCard = () => (
+  <Box as="section" bg={useColorModeValue('gray.50', 'gray.900')} py="12">
+    <Card>
+      <Stack
+        direction={{
+          base: 'column',
+          md: 'row',
+        }}
+        spacing={{
+          base: '3',
+          md: '10',
+        }}
+        align="flex-start"
+      >
+        <VStack spacing="4">
+          <Image
+            w="400px"
+            src="https://res.cloudinary.com/seanmodd/image/upload/v1631817451/613e82a549081f231a0b55ac_uhgwsg.jpg"
+            name="Tesla Model 3"
+          />
+          <Button
+            width="full"
+            colorScheme="blue"
+            display={{
+              base: 'none',
+              md: 'initial',
+            }}
+          >
+            Contact me
+          </Button>
+        </VStack>
+        <Box>
+          <Stack
+            spacing={{
+              base: '1',
+              md: '2',
+            }}
+            direction={{
+              base: 'column',
+              md: 'column',
+            }}
+          >
+            <Text as="h2" fontWeight="bold" fontSize="xl">
+              2020 Tesla Model 3
+            </Text>
+            <HStack
+              fontSize={{
+                base: 'md',
+                md: 'lg',
+              }}
+            >
+              <Text
+                as="span"
+                color={useColorModeValue('gray.500', 'gray.300')}
+                lineHeight="1"
+              >
+                @meldesigner
+              </Text>
+              <Icon as={HiShieldCheck} color="green.500" />
+            </HStack>
+          </Stack>
+          <Text mt="2">Graphic Designer and WordPress Expert</Text>
+          <Wrap shouldWrapChildren my="4" spacing="4">
+            <CustomerReviews reviewCount={84} rating={5.0} />
+            <HStack>
+              <Icon as={HiCash} fontSize="xl" color="gray.400" />
+              <Text
+                fontSize="sm"
+                fontWeight="medium"
+                color={useColorModeValue('gray.600', 'gray.300')}
+              >
+                <b>$2.5k</b> earned
+              </Text>
+            </HStack>
+
+            <HStack spacing="1">
+              <Icon as={HiLocationMarker} color="gray.400" />
+              <Text
+                fontSize="sm"
+                fontWeight="medium"
+                color={useColorModeValue('gray.600', 'gray.300')}
+              >
+                Dubai, UAE
+              </Text>
+            </HStack>
+          </Wrap>
+          <Box fontSize="sm" noOfLines={2}>
+            Brand new Tesla Model 3!...
+          </Box>
+          <Wrap
+            shouldWrapChildren
+            mt="5"
+            color={useColorModeValue('gray.600', 'gray.300')}
+          >
+            {['Adobe Photoshop', 'UX/UI', 'Landing Page', 'Web Design'].map(
+              (tag) => (
+                <Tag key={tag} color="inherit" px="3">
+                  {tag}
+                </Tag>
+              )
+            )}
+          </Wrap>
+        </Box>
+      </Stack>
+      <Button
+        mt="8"
+        width="full"
+        colorScheme="blue"
+        display={{
+          md: 'none',
+        }}
+      >
+        Contact me
+      </Button>
+    </Card>
+  </Box>
+);
